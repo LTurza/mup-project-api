@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+a{
+    text-decoration-line: none;
+    color: #1e1e1e;
+    transition-duration: .3s;
+    text-shadow: 1px 1px transparent;
+}
+
+.header{
+    background-color: aliceblue;
+    height: 70px;
+    display: flex;
+    width: 100vw;
+    margin-bottom: 50px;
+}
+.header__nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 50px;
+}
+.header__nav-logo{
+    height: 50px;
+}
+.header__nav-logo--text{
+    padding: 10px;
+}
+.header__nav--home-link{
+    display: flex;
+    min-width: 250px;
+    align-items: center;
+}
+.header__nav-list{
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+.header__nav-list-item{
+    padding: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+.header__nav-list-item--link{
+    padding: 20px 10px;
+}
+.header__nav-list-item--link:hover{
+    color: blue;
+    transition-duration: .3s;
+}
+.main{
+    
+}
+.header__nav-list-item--btn{
+    padding: 8px 10px;
+    box-shadow: 0px 0px 5px 1px #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+    min-width: 70px;
+    text-align: center;
+    background-color: #eee;
+}
+.header__nav-list-item--btn:hover{
+    background-color: #aaa;
+    box-shadow: 0px 0px 5px 1px #eee;
+
+}
