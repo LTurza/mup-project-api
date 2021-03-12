@@ -1,0 +1,11 @@
+@import "./src/styles/colors";
+
+.alert-modal{
+  position: absolute;
+  background-color: rgba(255, 87, 87, 0.8);
+  padding: 20px;
+  border: 1px solid red;
+  border-radius: 10px;
+  color: #8e0000;
+  text-align: center;
+}
