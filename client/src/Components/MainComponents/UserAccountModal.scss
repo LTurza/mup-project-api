@@ -8,137 +8,93 @@
     justify-content: center;
     align-items: center;
     background-color: rgba($color-dark, 0.6);
-    .modal{
-        background-color: $color-dark;
-        width: 40vw;
-        height: 50vh;
-        border-radius: 10px;
-        box-shadow: 0 0 5px 2px $color-blue-light;
-        padding: 50px;
-        display: flex;
-        .registration-modal{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .modal-input-email{
-                width: 100% !important;
-            }
-            .modal-input-text,
-            .modal-input-email,
-            .modal-input-password{
-                position: relative;
-                width: calc(50% - 20px);
-                height: 60px;
-                overflow: hidden;
-                display: flex;
-                justify-content: center !important;
-                margin: 10px 10px;
-                .modal-input-text__label,
-                .modal-input-email__label,
-                .modal-input-password__label{
-                    position: absolute;
-                    bottom: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                    pointer-events: none;
-                    border-bottom: 1px solid $color-light;
-                    margin: 10px 0;
-                    &::after {
-                        content: "";
-                        position: absolute;
-                        height: 100%;
-                        width: 100%;
-                        border-bottom: 3px solid $color-blue;
-                        left: 0px;
-                        bottom: -1px;
-                        transform: translateX(-100%);
-                        transition-duration: 0.5s;
-                    }
-                    .modal-input-text__label--name,
-                    .modal-input-email__label--name,
-                    .modal-input-password__label--name{
-                        position: absolute;
-                        bottom: 5px;
-                        left: 0px;
-                        transition: all 0.3s ease;
-                        color: $color-light;
-                    }
-                }
-                .modal-input-text__field,
-                .modal-input-email__field,
-                .modal-input-password__field{
-                    background-color: transparent;
-                    width: 100%;
-                    height: 100%;
-                    color: #44a8e1;
-                    padding-top: 5px;
-                    border: none;
-                    font-size: 16px;
-
-                    &:focus + .modal-input-text__label .modal-input-text__label--name,
-                    &:valid + .modal-input-text__label .modal-input-text__label--name,
-                    &:focus + .modal-input-email__label .modal-input-email__label--name,
-                    &:valid + .modal-input-email__label .modal-input-email__label--name,
-                    &:focus + .modal-input-password__label .modal-input-password__label--name,
-                    &:valid + .modal-input-password__label .modal-input-password__label--name{
-                        transform: translateY(-150%);
-                        font-size: 14px;
-                        color: $color-blue;
-                    }
-                    &:focus{
-                        outline: none;
-                    }
-                    &:focus + .modal-input-text__label::after,
-                    &:valid + .modal-input-text__label::after,
-                    &:focus + .modal-input-email__label::after,
-                    &:valid + .modal-input-email__label::after,
-                    &:focus + .modal-input-password__label::after,
-                    &:valid + .modal-input-password__label::after{
-                        transform: translateX(0%);
-                    }
-                }
-
-            }
-        }
-    }
+    z-index: 1 !important;
 }
 
-.modal-fields{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.full-width{
-    width: 31.3vw !important;
-}
-.text-light{
-    color: $color-light;
-}
-.createAccount{
-    padding: 10px;
-    color: $color-light;
-    background-color: $color-blue-dark;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 1px $color-blue-dark;
-    font-size: 12px;
-    transition-duration: 0.3s;
-    &:hover{
-        box-shadow: 0 0 10px 1px $color-blue-dark;
-        background-color: $color-light;
-        color: $color-blue-dark;
-        transition-duration: 0.3s;
-    }
-}
+// * Działające pola do formularza
+        // .registration-modal{
+        //     width: 100%;
+        //     display: flex;
+        //     flex-direction: column;
+        //     align-items: center;
+        //     .modal-input-email{
+        //         width: 100% !important;
+        //     }
+        //     .modal-input-text,
+        //     .modal-input-email,
+        //     .modal-input-password{
+        //         position: relative;
+        //         width: calc(50% - 20px);
+        //         height: 60px;
+        //         overflow: hidden;
+        //         display: flex;
+        //         justify-content: center !important;
+        //         margin: 10px 10px;
+        //         .modal-input-text__label,
+        //         .modal-input-email__label,
+        //         .modal-input-password__label{
+        //             position: absolute;
+        //             bottom: 0px;
+        //             left: 0px;
+        //             width: 100%;
+        //             height: 100%;
+        //             pointer-events: none;
+        //             border-bottom: 1px solid $color-light;
+        //             margin: 10px 0;
+        //             &::after {
+        //                 content: "";
+        //                 position: absolute;
+        //                 height: 100%;
+        //                 width: 100%;
+        //                 border-bottom: 3px solid $color-blue;
+        //                 left: 0px;
+        //                 bottom: -1px;
+        //                 transform: translateX(-100%);
+        //                 transition-duration: 0.5s;
+        //             }
+        //             .modal-input-text__label--name,
+        //             .modal-input-email__label--name,
+        //             .modal-input-password__label--name{
+        //                 position: absolute;
+        //                 bottom: 5px;
+        //                 left: 0px;
+        //                 transition: all 0.3s ease;
+        //                 color: $color-light;
+        //             }
+        //         }
+        //         .modal-input-text__field,
+        //         .modal-input-email__field,
+        //         .modal-input-password__field{
+        //             background-color: transparent;
+        //             width: 100%;
+        //             height: 100%;
+        //             color: #44a8e1;
+        //             padding-top: 5px;
+        //             border: none;
+        //             font-size: 16px;
 
-.invalid-input {
-    background-color: rgba(255, 76, 77, .8) !important;
-}
-.header-line{
-    height: 1px;
-    width: 50%;
-    background-color: $color-light;
-    margin-bottom: 20px;
-}
+        //             &:focus + .modal-input-text__label .modal-input-text__label--name,
+        //             &:valid + .modal-input-text__label .modal-input-text__label--name,
+        //             &:focus + .modal-input-email__label .modal-input-email__label--name,
+        //             &:valid + .modal-input-email__label .modal-input-email__label--name,
+        //             &:focus + .modal-input-password__label .modal-input-password__label--name,
+        //             &:valid + .modal-input-password__label .modal-input-password__label--name{
+        //                 transform: translateY(-150%);
+        //                 font-size: 14px;
+        //                 color: $color-blue;
+        //             }
+        //             &:focus{
+        //                 outline: none;
+        //             }
+        //             &:focus + .modal-input-text__label::after,
+        //             &:valid + .modal-input-text__label::after,
+        //             &:focus + .modal-input-email__label::after,
+        //             &:valid + .modal-input-email__label::after,
+        //             &:focus + .modal-input-password__label::after,
+        //             &:valid + .modal-input-password__label::after{
+        //                 transform: translateX(0%);
+        //             }
+        //         }
+
+        //     }
+        // }

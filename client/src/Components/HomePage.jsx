@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
 
-import UserAccountModal from './MainComponents/UserAccountModal'
-import AlertModal from "./MainComponents/Alert";
-
-
 class HomePage extends Component {
   mobileNaviHandler = () => {
       const mobileNavi = document.querySelector('.nav-top-mobile')

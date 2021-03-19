@@ -1,28 +1,23 @@
-import './styles/App.scss';
+// * libs
 import React, { Component } from 'react'
+import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+// * styles
+import './styles/App.scss';
+// * components
 import HomePage from './Components/HomePage'
 import Resources from './Components/Resorces'
 import NaviTop from './Components/MainComponents/NaviTop'
-import NaviTopMaobile from './Components/MainComponents/NaviTopMobile'
-
-import axios from 'axios'
 import UserAccountModal from "./Components/MainComponents/UserAccountModal";
-import AlertModal from "./Components/MainComponents/Alert";
-
-
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       userScreen: {
         screenWidth: window.innerWidth,
         screenHeight: window.innerHeight,
       },
-      activeMobileNavi: false,
-      activeUserModal: true,
       activeUserAccountModal:{
         signUp: true,
         signIn: false,
@@ -36,30 +31,25 @@ class App extends Component {
     .then(res => console.log(res))
   }
 
-  render() {
+  modalSignInHandler = () => {
+    this.setState({...this.state, activeUserAccountModal: {
+      signIn: !this.state.activeUserAccountModal.signIn,
+      signUp: false,
+    }})
+  }
+  modalSignUpHandler = () => {
+    this.setState({...this.state, activeUserAccountModal: {
+      signIn: false,
+      signUp: !this.state.activeUserAccountModal.signUp,
+    }})
+  }
 
-    
+  render() {
     return (
     <Router>
-      <NaviTop screen={this.state.userScreen} mobileNaviHandler={this.mobileNaviHandler}/>
-      {this.state.userScreen.screenWidth < 670 ? <NaviTopMaobile /> : null}
-      {
-        this.state.activeUserModal
-        ?
-        <UserAccountModal activeUserAccountModal={this.state.activeUserAccountModal} activeAlert={this.alertHandler}/>
-        :
-        null
-      }
-      {this.state.activeAlert
-        ?
-        <AlertModal
-          type='warning'
-          title="Incorrect Data"
-          message="Please, enter valid data and try again."
-        />
-        :
-        null
-      }
+      <NaviTop modalSignInHandler={this.modalSignInHandler} modalSignUpHandler={this.modalSignUpHandler}/>
+      {this.state.activeUserAccountModal.signIn ? <UserAccountModal  signIn={true}/> : null}
+      {this.state.activeUserAccountModal.signUp ? <UserAccountModal  signUp={true}/> : null}
       <Switch>
         <Router path='/resources'>
           <Resources />
@@ -74,3 +64,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+

@@ -1,20 +1,17 @@
 import React from 'react'
 
 import './UserAccountModal.scss'
-import UserRegistrationModal from './UserRegistrationModal'
 
-const UserAccountModal = ({activeUserAccountModal, activeAlert}) => {
+import UserSignIn from './ComponentsElements/UserSignIn'
+import UserSignUp from './ComponentsElements/UserSignUp'
+
+const UserAccountModal = ({signIn, signUp}) => {
+
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
-      {activeUserAccountModal.signUp 
-      ?
-        <UserRegistrationModal activeAlert={activeAlert}/>
-      :
-      null
-      }
-      </div>
+      {signIn ? <UserSignIn /> : null}
+      {signUp ? <UserSignUp /> : null}
     </div>
     )
 }
