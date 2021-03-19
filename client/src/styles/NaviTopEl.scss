@@ -1,0 +1,12 @@
+@import './Colors.scss';
+
+.nav-top-element--link{
+    color: $color-light;
+    padding: 15px;
+    transition-duration: 0.3s;
+
+    &:hover{
+        color: $color-blue-dark;
+        transition-duration: 0.3s;
+    }
+}

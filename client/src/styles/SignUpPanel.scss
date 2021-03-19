@@ -1,0 +1,18 @@
+@import './Colors.scss';
+
+.registration-panel{
+    background-color: $color-dark;
+    min-width: 400px;
+    width: 80vw;
+    min-height: 80vh;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px $color-blue-dark;
+    display: grid;
+
+    .registration-panel__header{
+        color: $color-light;
+        text-align: center;
+        line-height: 50px;
+    }
+}

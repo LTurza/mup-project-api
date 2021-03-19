@@ -1,0 +1,28 @@
+.alert-modal {
+  position: absolute;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.info {
+    background-color: rgba(68, 168, 225, 0.7);
+    color: #0e37a7;
+    border: 1px solid #0e37a7;
+  }
+
+  &.warnning {
+    background-color: rgba(225, 68, 68, 0.7);
+    color: #a70e0e;
+    border: 1px solid #a70e0e;
+  }
+
+  &.success {
+    background-color: rgba(68, 225, 115, 0.7);
+    color: #0b8525;
+    border: 1px solid #0b8525;
+  }
+}
