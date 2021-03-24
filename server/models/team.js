@@ -2,47 +2,51 @@ const getDb = require('./../utils/database').getDb
 const ObjectId = require('mongodb').ObjectId
 
 class Team {
-  constructor({admin, title, description, teamLogo, members, tasks = []} ) {
+  constructor({admin = {}, title = '', description = '', teamLogo =' ', members = [], tasks = []} ) {
     this.title = title
     this.description = description
     this.teamLogo = teamLogo
     this.admin = admin
-    this.members = members || [admin.userId]
+    this.members = members 
     this.tasks = tasks
+    this.db = getDb()
+    this.collection = 'teams'
   }
 
-  async updateTeamMembers(teamId){
+  async updateTeamMembers(){
     const db = await getDb()
     await console.log(this)
-    await db.collection('teams').updateOne({_id: ObjectId(teamId)}, {$set: {members: this.members}})
+    await this.db.collection(this.collection).updateOne({_id: ObjectId(this._id)}, {$set: {members: this.members}})
   }
 
   async addNewTeam () {
-    const db = await getDb()
-    await db.collection('teams').insertOne(this)
+    const newTeam = {
+      title: this.title,
+      description: this.description,
+      teamLogo: this.teamLogo,
+      admin: this.admin,
+      task: this.task,
+      members: this.members || [admin._id]
+    }
+    await this.db.collection(this.collection).insertOne(newTeam)
   }
 
-  static async fetchTeamByName (title) {
-    const db = await getDb()
-    const user = await db.collection('teams').findOne({title})
-    return user
+  async fetchTeamByName () {
+    return this.db.collection(this.collection).findOne({title: this.title})
   }
 
-  static async fetchTeambyId (teamId) {
-    const db = await getDb()
-    const team = await db.collection('teams').findOne({_id: ObjectId(teamId)})
-    return team
+  async fetchTeamById (teamId) {
+    return db.collection(this.collection).findOne({_id: ObjectId(teamId)})
+    
   }
 
   static async fetchAllTeams () {
-    const db = await getDb()
-    const allTeams = await db.collection('teams').find().toArray()
-    return allTeams
+    return getDb().collection('teams').find().toArray()
   }
 
   static async teamShouldExist (teamId) {
     const db = await getDb()
-    const teamExist = await db.collection('teams').findOne({_id: ObjectId(teamId)})
+    const teamExist = await db.collection(this.collection).findOne({_id: ObjectId(teamId)})
     return teamExist
   }
 
