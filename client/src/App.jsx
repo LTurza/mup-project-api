@@ -1,14 +1,16 @@
 // * libs
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * styles
 import './styles/App.scss';
 // * components
-import HomePage from './Components/HomePage'
+import HomePage from './Views/HomePage'
 import Resources from './Components/Resorces'
 import NaviTop from './Components/MainComponents/NaviTop'
 import UserAccountModal from "./Components/MainComponents/UserAccountModal";
+import AlertModal from './Components/MainComponents/ComponentsElements/Alert'
+
 
 class App extends Component {
   constructor(props) {
@@ -19,37 +21,40 @@ class App extends Component {
         screenHeight: window.innerHeight,
       },
       activeUserAccountModal:{
-        signUp: true,
+        signUp: false,
         signIn: false,
       },
-      activeAlert: false,
+      activeAlert: true
     }
   }
 
-  componentDidMount () {
-    axios.get('http://localhost:5000/')
-    .then(res => console.log(res))
+  userModalHandler = (modalToHandle, modalToClose, closeAllModals) => {
+    this.setState({...this.state, activeUserAccountModal: {
+      [modalToHandle]: closeAllModals ? false : !this.state.activeUserAccountModal[modalToHandle],
+      [modalToClose]: false,
+    }})
   }
 
-  modalSignInHandler = () => {
-    this.setState({...this.state, activeUserAccountModal: {
-      signIn: !this.state.activeUserAccountModal.signIn,
-      signUp: false,
-    }})
+  closeModalHandler = () => {
+    this.setState({...this.state, activeAlert: false})
   }
-  modalSignUpHandler = () => {
-    this.setState({...this.state, activeUserAccountModal: {
-      signIn: false,
-      signUp: !this.state.activeUserAccountModal.signUp,
-    }})
+
+  showAlertHandler = (type, message, title) => {
+    return <AlertModal type={type} message={message} title={title}  closeAlert={this.closeModalHandler}/>
   }
 
   render() {
     return (
-    <Router>
-      <NaviTop modalSignInHandler={this.modalSignInHandler} modalSignUpHandler={this.modalSignUpHandler}/>
-      {this.state.activeUserAccountModal.signIn ? <UserAccountModal  signIn={true}/> : null}
-      {this.state.activeUserAccountModal.signUp ? <UserAccountModal  signUp={true}/> : null}
+    <div className="App">
+      <Router>
+      <NaviTop userModalHandler={this.userModalHandler} />
+      {this.state.activeAlert ? this.showAlertHandler('info', 'asdasdas', 'title') : null}
+      {this.state.activeUserAccountModal.signIn || this.state.activeUserAccountModal.signUp 
+        ?
+          <UserAccountModal  activeModal={this.state.activeUserAccountModal} userModalHandler={this.userModalHandler}/>
+        :
+          null
+      }
       <Switch>
         <Router path='/resources'>
           <Resources />
@@ -59,6 +64,7 @@ class App extends Component {
         </Route>
       </Switch>
     </Router>
+    </div>
       )
   }
 }

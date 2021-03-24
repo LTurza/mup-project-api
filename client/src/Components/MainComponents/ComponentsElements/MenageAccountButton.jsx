@@ -47,10 +47,10 @@ class MenageAccountButton extends Component {
           <span className="account-section__header-text">Manage Account</span>
         </div>
         {this.state.isActive ?
-        <ButtonDark btnId="sign-in-button" btnTitle="Sing In" click={() => this.props.modalSignInHandler()}/>
+        <ButtonDark btnId="sign-in-button" btnTitle="Sing In" click={() => this.props.userModalHandler('signIn', 'signUp')}/>
         : null}
         {this.state.isActive ?
-        <ButtonDark btnid="sign-up-button" btnTitle="Sing Up" click={() => this.props.modalSignUpHandler()} />
+        <ButtonDark btnid="sign-up-button" btnTitle="Sing Up" click={() => this.props.userModalHandler('signUp', 'signIn')} />
         : null}
       </div>
     )

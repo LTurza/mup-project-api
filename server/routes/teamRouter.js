@@ -6,6 +6,8 @@ const router = express.Router()
 
 router.post('/new-team', teamController.postNewTeam)
 
-router.put('/update/:id')
+router.get('/fetch-all-teams', teamController.getAllTeams)
+
+router.put('/:teamId/user-join/:userId', teamController.putNewTeamMember)
 
 module.exports = router

@@ -5,7 +5,7 @@ import logo from './../../assets/logo.png'
 import NaviTopEl from './ComponentsElements/NaviTopEl'
 import MenageAccountButton from "./ComponentsElements/MenageAccountButton";
 
-const NaviTop = ({modalSignInHandler, modalSignUpHandler}) => {
+const NaviTop = ({userModalHandler}) => {
   return (
     <header className="nav-top">
           <img src={logo} alt="" className="nav-top__logo"/>
@@ -14,7 +14,7 @@ const NaviTop = ({modalSignInHandler, modalSignUpHandler}) => {
             <NaviTopEl linkUrl="/about" linkText="About"/>
             <NaviTopEl linkUrl="/resources" linkText="Resources"/>
           </ul>
-          <MenageAccountButton modalSignInHandler={() => modalSignInHandler()} modalSignUpHandler={() => modalSignUpHandler()}/>
+          <MenageAccountButton userModalHandler={userModalHandler}/>
     </header>
     )
 }

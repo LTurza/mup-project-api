@@ -2,16 +2,14 @@ import React from 'react'
 
 import './UserAccountModal.scss'
 
+
 import UserSignIn from './ComponentsElements/UserSignIn'
 import UserSignUp from './ComponentsElements/UserSignUp'
 
-const UserAccountModal = ({signIn, signUp}) => {
-
-
+const UserAccountModal = ({activeModal, userModalHandler}) => {
   return (
     <div className="modal-overlay">
-      {signIn ? <UserSignIn /> : null}
-      {signUp ? <UserSignUp /> : null}
+      {activeModal.signIn ? <UserSignIn userModalHandler={userModalHandler}/> : activeModal.signUp ? <UserSignUp /> : null}
     </div>
     )
 }

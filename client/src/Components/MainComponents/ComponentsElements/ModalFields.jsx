@@ -19,18 +19,7 @@ const ModalTextField = ({fieldValue, fieldName, label, userDataHandler, classCss
   )
 }
 
-const ModalEmailField = ({fieldValue, fieldName, placeholder, label, userDataHandler, classCss}) => {
-  // const emailValidator = (event) => {
-  //   const isEmail = event.target.value
-  //   if( isEmail.includes('@') && isEmail.includes('.')) {
-  //     event.target.classList.remove('invalid-input')
-  //
-  //   }
-  //   else{
-  //     event.target.classList.add('invalid-input')
-  //     throw 'Incorrect Email address'
-  //   }
-  // }
+const ModalEmailField = ({fieldValue, fieldName, label, userDataHandler, classCss}) => {
 
   return(
     <div className={"modal-input-email " + classCss}>

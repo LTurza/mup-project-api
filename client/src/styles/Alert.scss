@@ -1,13 +1,14 @@
 .alert-modal {
-  position: absolute;
+  position: relative;
   padding: 20px;
-  border-radius: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  font-size: 14px;
+  z-index: 9;
+  width: calc(100vw - 40px);
   &.info {
     background-color: rgba(68, 168, 225, 0.7);
     color: #0e37a7;
@@ -24,5 +25,12 @@
     background-color: rgba(68, 225, 115, 0.7);
     color: #0b8525;
     border: 1px solid #0b8525;
+  }
+
+  .alert-modal--close{
+    position: absolute;
+    top: 28px;
+    right:  10px;
+    cursor: pointer;
   }
 }

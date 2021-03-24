@@ -9,7 +9,7 @@
   grid-template-rows: 50px;
   grid-template-areas: 'leftSpace logo navi conterSpace userManage rightSpace';
   z-index: 10;
-  position: fixed;
+  position: relative;
 
 
   .nav-top__logo{

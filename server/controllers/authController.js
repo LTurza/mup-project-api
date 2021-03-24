@@ -1,20 +1,20 @@
 const bcrypt = require('bcrypt')
 const User = require('./../models/user')
 
-exports.postUserSignIn = async (req,res) => {
-  let userData
-  await User.fetchUserByEmail(req.body.email)
+exports.postUserSignIn = (req,res) => {
+  User.fetchUserByEmail(req.body.email)
     .then(result => result.password)
     .then(password => {
       bcrypt.compare(req.body.password, password, (err,result) => {
-        if(err) throw err
-        else if (result) {
+
+      if (err) {
+        throw err
+      }
+      else if (result) {
           req.session.loggedIn = true
-          res.status(200).json({authorization: true, userData})
+          res.status(200).json({authorization: true})
         }
-        else res.status(401).json({authorization: false, message: 'Incorrect password!'})
+        else res.status(401).json({authorization: false, message: 'Incorrect data!'})
       })
     })
-
-
 }

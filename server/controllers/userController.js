@@ -16,11 +16,10 @@ exports.postUserSignUp = (req,res) => {
             userData.email,
             result
           )
+          user.addUser()
         })
-        return user
       }
     })
-    .then(user => console.log(user))
     .then(() => res.status(201).json({message: 'User was registred succesfully'}))
     .catch(err => conosle.err(err))
 }

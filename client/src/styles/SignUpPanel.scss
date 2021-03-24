@@ -9,6 +9,8 @@
     border-radius: 5px;
     box-shadow: 0 0 5px 1px $color-blue-dark;
     display: grid;
+    position: relative;
+    top: 50px;
 
     .registration-panel__header{
         color: $color-light;

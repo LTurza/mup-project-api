@@ -1,28 +1,15 @@
 import React from 'react'
 import './../../../styles/Alert.scss'
+import CloseIcon from '@material-ui/icons/Close';
 
-const AlertModalInfo = ({type, title, message}) => {
+const AlertModal = ({type, title, message, closeAlert}) => {
+  
   return (
-    <div className="alert-modal info">
-          <h2>INFO: {title}</h2>
-          <p>{message}</p>
+    <div className={"alert-modal " + type}>
+      <h2>{type.toUpperCase()}: {title}:</h2>
+      <p>{message}</p>
+      <CloseIcon  className="alert-modal--close" onClick={() => closeAlert()}/>
     </div>
   )
 }
-const AlertModalWarnning = ({type, title, message}) => {
-  return (
-    <div className="alert-modal warnning">
-          <h2>ERROR: {title}</h2>
-          <p>{message}</p>
-    </div>
-  )
-}
-const AlertModalSuccess = ({type, title, message}) => {
-  return (
-    <div className="alert-modal success">
-          <h2>SUCCESS: {title}</h2>
-          <p>{message}</p>
-    </div>
-  )
-}
-export {AlertModalInfo, AlertModalWarnning, AlertModalSuccess}
+export default AlertModal
