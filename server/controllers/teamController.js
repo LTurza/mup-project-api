@@ -2,7 +2,6 @@ const Team = require('./../models/team')
 const User = require('./../models/user')
 const ObjectId = require('mongodb').ObjectId
 
-
 exports.postNewTeam = async (req,res) => {
   const teamData = req.body.teamData
   const teamExist = await new Team({title: teamData.title}).fetchTeamByName()
@@ -27,15 +26,26 @@ exports.postNewTeam = async (req,res) => {
 }
 
 exports.getAllTeams = async (req, res) => {
-  const allTeams = await Team.fetchAllTeams()
+  const dataForNewTeam = {
+    admin: {
+      userId: ObjectId('605b9ef2c9e7ae4af18f3bc4'),
+      firstname: 'Łukasz',
+      secondName: 'turza'
+    },
+    title: 'asd',
+    description: 'qwe',
+    logo: 'zxc'
+  }
+  const allTeams = await new Team(dataForNewTeam).fetchAllTeams()
+  console.log(allTeams)
   res.status(200).json({teams: allTeams})
 }
 
 exports.putNewTeamMember = async (req, res) => {
   const userId = req.params.userId
   const teamId = req.params.teamId
-  const userExist = await new User({_id: userId}).fetchUserById()
-
+  const userExist = await User.fetchTeamByData('asd')
+  console.log(userExist)
   // if (userExist) {
   //   const team = await Team.fetchTeambyId(teamId)
   //   const newTeam = await new Team(team)

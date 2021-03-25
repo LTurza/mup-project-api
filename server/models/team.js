@@ -2,7 +2,7 @@ const getDb = require('./../utils/database').getDb
 const ObjectId = require('mongodb').ObjectId
 
 class Team {
-  constructor({admin = {}, title = '', description = '', teamLogo =' ', members = [], tasks = []} ) {
+  constructor({ admin = {}, title = '', description = '', teamLogo =' ', members = [], tasks = [] }) {
     this.title = title
     this.description = description
     this.teamLogo = teamLogo
@@ -14,7 +14,6 @@ class Team {
   }
 
   async updateTeamMembers(){
-    const db = await getDb()
     await console.log(this)
     await this.db.collection(this.collection).updateOne({_id: ObjectId(this._id)}, {$set: {members: this.members}})
   }
@@ -35,13 +34,12 @@ class Team {
     return this.db.collection(this.collection).findOne({title: this.title})
   }
 
-  async fetchTeamById (teamId) {
-    return db.collection(this.collection).findOne({_id: ObjectId(teamId)})
-    
+  static async fetchTeamByData (documentFieldName, documentFieldData) {
+    return getDb().collection('teams').findOne({_id: documentFieldData})
   }
 
-  static async fetchAllTeams () {
-    return getDb().collection('teams').find().toArray()
+  fetchAllTeams () {
+    return this.db.collection(this.collection).find().toArray()
   }
 
   static async teamShouldExist (teamId) {
@@ -49,10 +47,6 @@ class Team {
     const teamExist = await db.collection(this.collection).findOne({_id: ObjectId(teamId)})
     return teamExist
   }
-
-
-
 }
-
 
 module.exports = Team
