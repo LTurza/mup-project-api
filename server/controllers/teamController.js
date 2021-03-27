@@ -3,57 +3,76 @@ const User = require('./../models/user')
 const ObjectId = require('mongodb').ObjectId
 
 exports.postNewTeam = async (req,res) => {
-  const teamData = req.body.teamData
-  const teamExist = await new Team({title: teamData.title}).fetchTeamByName()
-  if (teamExist === null) {
-    const user = await User.fetchUserById(req.body.userId)
-    const dataForNewTeam = {
-      admin: {
-        userId: ObjectId(user._id),
-        firstname: user.firstName,
-        secondName: user.lastName
-      },
-      title: teamData.title,
-      description: teamData.description,
-      logo: teamData.teamLogo
+  const teamTitle = req.body.teamTitle
+  const teamDescription = req.body.teamDescription
+  const teamLogo = req.body.teamLogo
+  const userId = req.body.userId
+
+  if (typeof teamTitle === 'string' && teamTitle.trimEnd().length > 0
+  && typeof teamDescription === 'string' && teamDescription.trimEnd().length > 0
+  && typeof teamLogo === 'string'&& teamLogo.trimEnd().length > 0 
+  && typeof userId === 'string' && userId.trimEnd().length === 24){
+
+      const teamExist = await Team.fetchTeamByData('title', teamTitle)
+      if (teamExist === null) {
+        
+        const user = await User.fetchUserByData('_id', ObjectId(userId))
+        const dataForNewTeam = {
+          admin: {
+            userId: ObjectId(user._id),
+            firstname: user.firstName,
+            secondName: user.lastName
+          },
+          title: teamTitle,
+          description: teamDescription,
+          logo: teamLogo,
+          members: [ObjectId(user._id)],
+          tasks: [] 
+        }
+  
+        const newTeam = new Team(dataForNewTeam)
+        await newTeam.addNewTeam()
+        res.status(201).json({message: 'Team created succesfully'})
+  
+      } else {
+        res.status(409).json({message: 'Team already exists.'})
     }
-    const newTeam = new Team(dataForNewTeam)
-    await newTeam.addNewTeam()
-    res.status(201).json({message: 'Team created succesfully'})
   } else {
-    res.status(409).json({message: 'Team already exists.'})
+    res.status(400).json({msg: 'Invalid data'})
   }
 }
 
+
 exports.getAllTeams = async (req, res) => {
-  const dataForNewTeam = {
-    admin: {
-      userId: ObjectId('605b9ef2c9e7ae4af18f3bc4'),
-      firstname: 'Łukasz',
-      secondName: 'turza'
-    },
-    title: 'asd',
-    description: 'qwe',
-    logo: 'zxc'
-  }
-  const allTeams = await new Team(dataForNewTeam).fetchAllTeams()
-  console.log(allTeams)
+  const allTeams = await Team.fetchAllTeams()
   res.status(200).json({teams: allTeams})
 }
 
 exports.putNewTeamMember = async (req, res) => {
   const userId = req.params.userId
   const teamId = req.params.teamId
-  const userExist = await User.fetchTeamByData('asd')
-  console.log(userExist)
-  // if (userExist) {
-  //   const team = await Team.fetchTeambyId(teamId)
-  //   const newTeam = await new Team(team)
-  //   newTeam.members.forEach(element => element.toString() === userId ? res.status(409).json({message: 'User is already team member'}) : null)
-  //   await team.members.push(ObjectId(userId))
-  //   console.log(newTeam)
-  //   await newTeam.updateTeamMembers()
 
-    res.status(200).json({message: 'User added succesfuly'})
-  // }
+  if(typeof userId === 'string'&& userId.trim().length === 24 
+  && typeof teamId === 'string' && teamId.trim().length === 24) {
+
+    const isTeamExist = await Team.isTeamExist(teamId)
+    const isUserExist = await User.isUserExisit(userId)
+    if (isUserExist && isTeamExist) {
+
+      const team = await Team.fetchTeamByData('_id', ObjectId(teamId))
+
+      if(team.members.find(element => element.toString() === userId) === undefined) {
+        team.members.push(ObjectId(userId))
+        const updatedTeam = new Team(team)
+        updatedTeam.updateTeam()
+        res.status(200).json({message: 'User updated succesfuly'})
+      } else {
+        res.status(400).json({msg: 'User is already member of a team'})
+      }
+    } else {
+      res.status(400).json({msg: 'Invalid team or user'})
+    }
+  } else {
+    res.status(400).json({msg: 'Invalid data'})
+  }
 }
