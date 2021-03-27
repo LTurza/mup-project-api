@@ -1,8 +1,11 @@
-const getDb  = require('./../utils/database').getDb
+const db  = require('./../utils/database').getDb
 const ObjectId = require('mongodb').ObjectId
 
+const collectionName = 'users'
+
 class User {
-  constructor(firstName, lastName, email, password, teams = []) {
+  constructor({_id, firstName, lastName, email, password, teams = []}) {
+    this._id = _id !== null ? ObjectId(_id) : ObjectId()
     this.firstName = firstName
     this.lastName = lastName
     this.email = email
@@ -11,36 +14,15 @@ class User {
   }
 
   addUser() {
-    const db = getDb()
-    return db.collection('users').insertOne(this)
-      .then(result => console.log(result))
-      .catch(err => console.error(err))
+    return db().collection(collectionName).insertOne(this)
   }
 
-  static async fetchUserById(userId) {
-    const db = getDb()
-    const user = await db.collection('users').findOne({_id: ObjectId(userId)})
-
-    return user
-  }
-  
-  static async userShouldExist (userId) {
-    const db = getDb()
-    let userExist
-    await db.collection('users').findOne({_id: ObjectId(userId)}) === null ? userExist = false : userExist = true
-
-    return userExist
+  static fetchUserByData(documentFieldName, documentFieldData){
+    return db().collection(collectionName).findOne({[documentFieldName]: documentFieldData})
   }
 
-
-  static fetchUserByEmail (email) {
-    const db = getDb()
-    const promise = new Promise((resolve, reject) => {
-      db.collection('users').findOne({email})
-        .then(result => resolve(result))
-        .catch(err => reject(err))
-    })
-    return promise
+  static isUserExisit (id) {
+    return User.fetchUserByData('_id', ObjectId(id)) === null ? false : true
   }
 }
 
