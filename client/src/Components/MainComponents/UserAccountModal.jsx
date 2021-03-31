@@ -1,15 +1,15 @@
 import React from 'react'
 
-import './UserAccountModal.scss'
+import './userAccountModal.scss'
 
 
-import UserSignIn from './ComponentsElements/UserSignIn'
-import UserSignUp from './ComponentsElements/UserSignUp'
+import SignInPanel from './ComponentsElements/SignInPanel'
+import SignUpPanel from './ComponentsElements/SignUpPanel'
 
 const UserAccountModal = ({activeModal, userModalHandler}) => {
   return (
     <div className="modal-overlay">
-      {activeModal.signIn ? <UserSignIn userModalHandler={userModalHandler}/> : activeModal.signUp ? <UserSignUp /> : null}
+      {activeModal.signIn ? <SignInPanel userModalHandler={userModalHandler}/> : activeModal.signUp ? <SignUpPanel /> : null}
     </div>
     )
 }
