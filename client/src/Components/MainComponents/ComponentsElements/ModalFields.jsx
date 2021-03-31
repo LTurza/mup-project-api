@@ -1,15 +1,15 @@
 import React from 'react'
 
-import './../../../styles/ModalFields.scss'
+import './modalFields.scss'
 
-const ModalTextField = ({fieldValue, fieldName, label, userDataHandler, classCss}) => {
+const ModalTextField = ({fieldValue, fieldName, label, dataHandler, classCss}) => {
   return (
     <div className={'modal-input-text ' + classCss}>
       <input
         className="modal-input-text__field"
         type="text"
         name={fieldName}
-        onChange={(event) =>userDataHandler(event, fieldName)}
+        onChange={(event) => dataHandler(event, fieldName)}
         required
       />
       <label className="modal-input-text__label" htmlFor={fieldName}>
@@ -19,15 +19,14 @@ const ModalTextField = ({fieldValue, fieldName, label, userDataHandler, classCss
   )
 }
 
-const ModalEmailField = ({fieldValue, fieldName, label, userDataHandler, classCss}) => {
-
+const ModalEmailField = ({fieldValue, fieldName, label, dataHandler, classCss}) => {
   return(
     <div className={"modal-input-email " + classCss}>
       <input
         className="modal-input-email__field"
         type="email"
         name={fieldName}
-        onChange={event => userDataHandler(event.target.value)}
+        onChange={event => dataHandler(event.target.value)}
         required
       />
       <label className="modal-input-email__label" htmlFor={fieldName}>
@@ -37,14 +36,14 @@ const ModalEmailField = ({fieldValue, fieldName, label, userDataHandler, classCs
   )
 }
 
-const ModalPasswordField = ({fieldValue, fieldName, label, userDataHandler, classCss}) => {
+const ModalPasswordField = ({fieldValue, fieldName, label, dataHandler, classCss}) => {
   return(
     <div className={"modal-input-password " + classCss}>
       <input
         className="modal-input-password__field"
         type="password"
         name={fieldName}
-        onChange={(event) => userDataHandler(event.target.value)}
+        onChange={(event) => dataHandler(event.target.value)}
         required
       />
       <label className="modal-input-password__label" htmlFor={fieldName}>
@@ -54,4 +53,21 @@ const ModalPasswordField = ({fieldValue, fieldName, label, userDataHandler, clas
   )
 }
 
-export {ModalTextField, ModalEmailField, ModalPasswordField}
+const ModalTextArea = ({fieldValue, fieldName, label, dataHandler, classCss}) => {
+  return(
+    <div className={"modal-input-textarea " + classCss}>
+      <label className="modal-input-textarea__label" htmlFor={fieldName}>
+        <span className="modal-input-textarea__label--name">{label}</span>
+      </label>
+      <textarea
+        className="modal-input-textarea__field"
+        name={fieldName}
+        onChange={(event) => dataHandler(event.target.value)}
+        required
+      ></textarea>
+    </div>
+  )
+  
+}
+
+export {ModalTextField, ModalEmailField, ModalPasswordField, ModalTextArea}
