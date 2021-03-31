@@ -1,0 +1,71 @@
+@import 'src/styles/colors';
+
+.kanban-board__column {
+  min-width: 350px;
+  height: 100%;
+  border: 1px solid $color-blue-dark;
+  border-radius: 5px;
+  position: relative;
+  overflow-y: scroll;
+  overflow-y: hidden;
+  margin: 0 5px;
+
+  &-header{
+    color: $color-light;
+    display: flex;
+    padding: 10px 0;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 35px;
+  }
+
+  .kanban-board{
+    &__task-counter{
+      position: absolute;
+      background-color: $color-dark + #222222;
+      color: $color-blue;
+      top: 7px;
+      left: 10px;
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+    &__action{
+      color: $color-light;
+      position: absolute;
+      border: 1px solid $color-dark;
+      border-radius: 15px;
+      cursor: pointer;
+
+      &.add {
+        top: 7px;
+        right: 40px;
+        border: 1px solid $color-dark;
+        border-radius: 15px;
+
+        &:hover{
+            background-color: $color-dark + #222222;
+            color: $color-blue;
+        }
+
+        &:active{
+            background-color: #888;
+        }
+      }
+  
+      &.more{
+        top: 8px;
+        right: 10px;
+
+        &:hover{
+          background-color: $color-dark + #222222;
+          color: $color-blue;
+        }
+
+        &:active{
+          background-color: #888;
+        }
+      }
+    }
+  }
+}

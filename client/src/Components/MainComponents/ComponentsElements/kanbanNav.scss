@@ -1,0 +1,28 @@
+@import 'src/styles/colors';
+
+.kanban-nav {
+  width: calc(100vw - 12px);
+  height: 70px;
+  margin: 10px;
+  border: 1px solid $color-blue-dark;
+  border-radius: 5px;
+  background-color: $color-dark;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  color: $color-light;
+  position: relative;
+  
+  &--action-add{
+    position: absolute;
+    top: 22px;
+    right: 10px;
+  }
+
+  &__logo{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 35px;
+  }
+}
