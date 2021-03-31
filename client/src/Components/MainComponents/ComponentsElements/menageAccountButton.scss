@@ -1,4 +1,4 @@
-@import './Colors.scss';
+@import 'src/styles/colors';
 
 .account-section{
   height: 30px;
@@ -14,7 +14,7 @@
   position: relative;
   margin-top: calc((4rem - 50px) / 2);
 
-  .account-section__header{
+  &__header{
     display: flex;
     align-items: center;
     position: absolute;
@@ -23,34 +23,33 @@
     left: 8px;
     z-index: 2 !important;
 
-    .account-section__header-icon{
+    &-icon{
       width: 30px;
       border-radius: 25px;
       color: #e2f0f5;
       pointer-events: none;
       z-index: 3;
-
     }
 
-    .account-section__header-text{
+    &-text{
       padding: 5px;
       color: #e2f0f5;
       pointer-events: none;
       font-size: 14px;
       z-index: 20;
     }
-  }
 
-  .account-section__header--actions {
-    transform: translateX(0);;
-    opacity: 0;
-    cursor: pointer;
-    transition-duration: 0.3s;
-    pointer-events: none !important;
-
-    &:hover{
-      box-shadow: 0 0 2px 1px #add8ee;
+    &--actions {
+      transform: translateX(0);;
+      opacity: 0;
+      cursor: pointer;
       transition-duration: 0.3s;
+      pointer-events: none !important;
+  
+      &:hover{
+        box-shadow: 0 0 2px 1px #add8ee;
+        transition-duration: 0.3s;
+      }
     }
   }
 }
