@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './../../styles/NavTop.scss'
+import './navTop.scss'
 import logo from './../../assets/logo.png'
 import NaviTopEl from './ComponentsElements/NaviTopEl'
 import MenageAccountButton from "./ComponentsElements/MenageAccountButton";

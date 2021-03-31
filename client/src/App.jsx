@@ -5,8 +5,9 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * styles
 import './styles/App.scss';
 // * components
-import HomePage from './Views/HomePage'
+import HomePage from './views/HomePage'
 import Resources from './Components/Resorces'
+import KanbanBoard from './views/KanbanBoard'
 import NaviTop from './Components/MainComponents/NaviTop'
 import UserAccountModal from "./Components/MainComponents/UserAccountModal";
 import AlertModal from './Components/MainComponents/ComponentsElements/Alert'
@@ -56,12 +57,16 @@ class App extends Component {
           null
       }
       <Switch>
+      <Route path='/kanbanBoard'>
+         <KanbanBoard />
+        </Route>
         <Router path='/resources'>
           <Resources />
         </Router>
         <Route path='/'>
           <HomePage />
         </Route>
+        
       </Switch>
     </Router>
     </div>
