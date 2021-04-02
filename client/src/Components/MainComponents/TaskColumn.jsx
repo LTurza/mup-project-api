@@ -9,6 +9,9 @@ import Task from './Task'
 
 const TaskColumn = ({columnName, taskList, addTaskHandler} ) => {
   const [tasks, setTasks] = useState([...taskList])
+  const rerender = () => {
+    
+  }
 
   const renderTasks = () => {
     return tasks.map(task => <Task title={task.title} description={task.description} author={task.author} />)

@@ -13,10 +13,15 @@
   color: $color-light;
   position: relative;
   
-  &--action-add{
+  &--action-add-column{
     position: absolute;
     top: 22px;
     right: 10px;
+  }
+  &--action-add-task{
+    position: absolute;
+    top: 22px;
+    right: 130px;
   }
 
   &__logo{

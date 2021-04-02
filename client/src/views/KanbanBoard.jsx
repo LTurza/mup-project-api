@@ -27,23 +27,37 @@ class KanbanBoard extends Component {
     }
   }
 
-  addColumnHandler = (eventData) => {
-    this.setState(...this.state, this.state.columns.push(eventData))
-  }
-
-  addTaskHandler = () => {
-    this.setState({...this.state, activeAddModal: true} )
-  }
-
   renderColumns = () => {
-    return this.state.columns.map(column => <TaskColumn columnName={column.columnName} addTaskHandler={this.addTaskHandler} taskList={this.state.tasks.filter(task => task.status === column.columnStatus)}/>)
+    return this.state.columns.map(column => <TaskColumn key={column.id} columnName={column.columnName} taskList={this.state.tasks.filter(task => task.status === column.columnStatus)}/>)
   }
+
+  addTaskHandler = async (data) => {
+    const task = {
+      id: this.state.tasks.length + 1,
+      title: data.title,
+      description: data.description,
+      author: 'LTurza',
+      status: 'todo'
+    }
+    await this.setState({...this.state, tasks: [...this.state.tasks, task], activeAddModal: false})
+    console.log(this.state.tasks);
+  }
+
+  showAddTaskModal = () => {
+    this.setState({...this.state, activeAddModal: true})
+  }
+  
+  closeAddTaskModal = () => {
+    this.setState({...this.state, activeAddModal: false})
+  }
+
+
 
   render () {
     return (
       <main className="kanban">
-        {this.state.activeAddModal ? <ModalTasks dataHandler/> : null}
-        <KanbanNav />
+        {this.state.activeAddModal ? <ModalTasks newTaskHandler={this.addTaskHandler} /> : null}
+        <KanbanNav showAddTaskModal={this.showAddTaskModal}/>
         <section className="kanban-board">
           {this.renderColumns()}
         </section>
