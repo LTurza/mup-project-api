@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './../../../styles/SignUpPanel.scss'
+import './signUpPanel.scss'
 
 const UserSignUp = () => {
     return(
