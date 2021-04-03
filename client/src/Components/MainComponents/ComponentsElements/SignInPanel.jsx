@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {useDispatch} from "react-redux";
 import axios from 'axios'
 
 import './signInPanel.scss'
@@ -7,30 +8,49 @@ import { ModalEmailField, ModalPasswordField } from './ModalFields'
 import { ButtonPriamry, ButtonSecondary } from './Buttons'
 import CloseIcon from '@material-ui/icons/Close';
 
-const UserSignIn = ({userModalHandler}) => {
+const UserSignIn = () => {
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
   const [userAuthorization, setUserAuthorization] = useState(false)
+
+  const dispatch = useDispatch()
 
   const sendPostUserLoginData = async () => {
     const userData = {
       email: userEmail,
       password: userPassword
     }
+    console.log(userData)
     const response = await axios.post('http://localhost:5000/login', userData)
     await setUserAuthorization(response.data.authorization)
   }
+
     return (
       <div>
         <div className="login-panel">
-          <CloseIcon className="close-panel" onClick={() => userModalHandler('signIn','signUp')}/>
+          <CloseIcon
+            className="close-panel"
+            onClick={() => dispatch({type: 'app/hideUserSignInModal'})}
+          />
           <h2 className="login-panel__header">Sign In</h2>
-          <ModalEmailField  classCss="login-panel__email" label="Email" fieldName="email" userDataHandler={setUserEmail}/>
-          <ModalPasswordField  classCss="login-panel__password" label="Password" fieldName="password" userDataHandler={setUserPassword}/>
+          <ModalEmailField
+            classCss="login-panel__email"
+            label="Email" fieldName="email"
+            dataHandler={setUserEmail}
+          />
+          <ModalPasswordField
+            classCss="login-panel__password"
+            label="Password" fieldName="password"
+            dataHandler={setUserPassword}
+          />
           <div className="login-panel__actions">
-            <ButtonPriamry  btnTitle="Log In" click={() => sendPostUserLoginData()}/>
-            <ButtonSecondary  btnTitle="Sign Up" click={() => userModalHandler('signUp', 'signIn')}/>
-        </div>
+            <ButtonPriamry
+              btnTitle="Log In"
+              click={() => sendPostUserLoginData()}/>
+            <ButtonSecondary
+              btnTitle="Sign Up"
+              click={() => dispatch({type: 'app/showUserSignUpModal'})}/>
+          </div>
         </div>
       </div>
     )

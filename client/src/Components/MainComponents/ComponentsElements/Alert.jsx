@@ -8,7 +8,10 @@ const AlertModal = ({type, title, message, closeAlert}) => {
     <div className={"alert-modal " + type}>
       <h2>{type.toUpperCase()}: {title}:</h2>
       <p>{message}</p>
-      <CloseIcon  className="alert-modal--close" onClick={() => closeAlert()}/>
+      <CloseIcon
+        className="alert-modal--close"
+        onClick={() => closeAlert()}
+      />
     </div>
   )
 }

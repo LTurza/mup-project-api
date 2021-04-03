@@ -1,15 +1,18 @@
 import React from 'react'
-
+import {useSelector} from "react-redux";
 import './userAccountModal.scss'
-
-
 import SignInPanel from './ComponentsElements/SignInPanel'
 import SignUpPanel from './ComponentsElements/SignUpPanel'
 
-const UserAccountModal = ({activeModal, userModalHandler}) => {
+const UserAccountModal = () => {
+  const modals = useSelector(state => state.modals)
   return (
     <div className="modal-overlay">
-      {activeModal.signIn ? <SignInPanel userModalHandler={userModalHandler}/> : activeModal.signUp ? <SignUpPanel /> : null}
+      {modals.signIn
+        ? <SignInPanel />
+        : modals.signUp
+          ? <SignUpPanel />
+          : null}
     </div>
     )
 }

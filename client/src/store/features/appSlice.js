@@ -10,7 +10,8 @@ const appReducer = (state = initialState, action) => {
     case 'app/showUserSignUpModal': {
       return {
         ...state,
-          signUp: true,
+        signUp: true,
+        signIn: false,
       }
     }
     case 'app/hideUserSignUpModal': {
@@ -22,7 +23,8 @@ const appReducer = (state = initialState, action) => {
     case 'app/showUserSignInModal': {
       return {
         ...state,
-          signIn: true,
+        signIn: true,
+        signUp: false,
       }
     }
     case 'app/hideUserSignInModal': {
