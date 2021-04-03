@@ -1,4 +1,4 @@
-@import './Colors.scss';
+@import 'src/styles/colors';
 
 .nav-top {
   background-color: $color-dark;
@@ -10,9 +10,10 @@
   grid-template-areas: 'leftSpace logo navi conterSpace userManage rightSpace';
   z-index: 10;
   position: relative;
+  box-shadow: 0 0 5px 1px $color-blue-dark;
 
 
-  .nav-top__logo{
+  &__logo{
     grid-area: logo;
     width: 100%;
     height: 40px;
@@ -21,7 +22,7 @@
     justify-content: center;
     align-items: center;
   }
-  .nav-top__navigation {
+  &__navigation {
     grid-area: navi;
     display: flex;
     align-items: center;

@@ -1,5 +1,5 @@
 import React from 'react'
-import './../../../styles/Buttons.scss'
+import './buttons.scss'
 
 const ButtonPriamry = ({btnType, btnId, btnTitle, click, classCss}) => {
   return (
@@ -7,7 +7,7 @@ const ButtonPriamry = ({btnType, btnId, btnTitle, click, classCss}) => {
       className={"btn primary " + classCss}
       type={btnType}
       id={btnId}
-      onClick= {click}>
+      onClick={click}>
         {btnTitle}
     </button>
     )
@@ -19,18 +19,19 @@ const ButtonSecondary = ({btnType, btnId, btnTitle, click, classCss}) => {
       className={"btn secondary " + classCss}
       type={btnType}
       id={btnId}
-      onClick= {click}>
+      onClick={click}>
         {btnTitle}
     </button>
     )
 }
+
 const ButtonDark = ({btnType, btnId, btnTitle, click, classCss}) => {
   return (
     <button 
       className={"btn dark " + classCss}
       type={btnType}
       id={btnId}
-      onClick= {click}>
+      onClick={click}>
         {btnTitle}
     </button>
     )
