@@ -2,31 +2,29 @@ const bcrypt = require('bcrypt')
 const User = require('./../models/user')
 const passwordHasher = require('./../utils/passwordHasher')
 
-
-exports.postUserSignUp = (req,res) => {
+exports.postUserSignUp = async (req,res) => {
   const userData = req.body.userData
-  User.fetchUserByEmail(userData.email)
-    .then(result => {
-      if (!!result) res.status(409).json({message: 'User with this email address already exists.'})
-      else {
-        bcrypt.hash(userData.password, 10, (err, result) => {
-          const user = new User(
-            userData.firstName,
-            userData.lastName,
-            userData.email,
-            result
-          )
-          user.addUser()
-        })
-      }
+  const user = await User.fetchUserByData('email', userData.email)
+
+  if (user !== null) {
+    res.status(409).json({message: 'User with this email address already exists.'})
+  } else {
+    const encryptedPassword = await bcrypt.hash(userData.password, 10) 
+    const newUser = new User({
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      password: encryptedPassword,
+      email: userData.email,
     })
-    .then(() => res.status(201).json({message: 'User was registred succesfully'}))
-    .catch(err => conosle.err(err))
+    await newUser.addUser()
+    res.status(201).json({message: 'User was registred succesfully'})
+  }
 }
 
 exports.putUserUpdate = async (req,res) => {
-  let userData
-  await User.fetchUser(result => {
-    userData = result
-  }, req.params.email)
+  // TODO: Update User
+  // let userData
+  // await User.fetchUser(result => {
+  //   userData = result
+  // }, req.params.email)
 }
