@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
 const User = require('./../models/userSchema')
-const passwordHasher = require('./../utils/passwordHasher')
 
 exports.postUserSignUp = async (req,res) => {
   const userData = req.body.userData

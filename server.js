@@ -29,9 +29,9 @@ server.use('/user', userRouter)
 
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function() {
-
-    server.listen(process.env.PORT || 5000)
-    console.log(`DB CONNECTED!\nServer listen on port: ${process.env.PORT || 5000}`)
+    server.listen(process.env.PORT || 5000, () => {
+        console.log(`DB CONNECTED!\nServer listen on port: ${process.env.PORT || 5000}`)
+    })
 });
 
 module.exports = server

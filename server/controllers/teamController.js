@@ -1,14 +1,10 @@
 const User = require('./../models/userSchema')
-const Team = require('../models/teamSchema')
+const Team = require('./../models/teamSchema')
 const ObjectId = require('mongodb').ObjectId
 const mongoose = require('mongoose')
 
 exports.postNewTeam = async (req,res) => {
-  const teamTitle = req.body.teamTitle
-  const teamDescription = req.body.teamDescription
-  const teamLogo = req.body.teamLogo
-  const userId = req.body.userId
-  const organizationId = req.body.organizationId
+  const {teamTitle, teamDescription, teamLogo, userId, organizationId} = req.body
 
   if (typeof teamTitle === 'string' && teamTitle.trimEnd().length > 0
   && typeof teamDescription === 'string' && teamDescription.trimEnd().length > 0
@@ -43,7 +39,6 @@ exports.postNewTeam = async (req,res) => {
   }
 }
 
-
 exports.getAllTeams = async (req, res) => {
   const allTeams = await Team.find({})
   res.status(200).json({teams: allTeams})
@@ -52,7 +47,6 @@ exports.getAllTeams = async (req, res) => {
 exports.putNewTeamMember = async (req, res) => {
   const userId = req.params.userId
   const teamId = req.params.teamId
-
 
   if(typeof userId === 'string' && userId.trim().length === 24
   && typeof teamId === 'string' && teamId.trim().length === 24) {
@@ -63,10 +57,10 @@ exports.putNewTeamMember = async (req, res) => {
     if (isUserExist && isTeamExist) {
 
       const team = await Team.findById(teamId)
-      
 
-      if(team.members.find(element => element.toString() === userId) === undefined) {
-        team.members = [...team.members, userId]
+      // if(team.members.find(element => element.toString() === userId) === undefined) {
+      if (!team.members.some(element => element.toString() === userId)){
+        team.members.push(userId)
         team.save()
         res.status(200).json({message: 'User updated succesfuly'})
       } else {
