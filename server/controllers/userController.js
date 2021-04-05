@@ -1,30 +1,23 @@
 const bcrypt = require('bcrypt')
-const User = require('./../models/user')
+const User = require('./../models/userSchema')
 const passwordHasher = require('./../utils/passwordHasher')
 
 exports.postUserSignUp = async (req,res) => {
   const userData = req.body.userData
-  const user = await User.fetchUserByData('email', userData.email)
-
-  if (user !== null) {
-    res.status(409).json({message: 'User with this email address already exists.'})
-  } else {
-    const encryptedPassword = await bcrypt.hash(userData.password, 10) 
-    const newUser = new User({
+  const isUserExisit = await User.exists({email: userData.email})
+  if (!isUserExisit) {
+    const encryptedPassword = await bcrypt.hash(userData.password, 10)
+    const newUser = User({
       firstName: userData.firstName,
       lastName: userData.lastName,
       password: encryptedPassword,
       email: userData.email,
     })
-    await newUser.addUser()
-    res.status(201).json({message: 'User was registred succesfully'})
+    await newUser.save()
+    res.status(201).send()
+  } else{
+    res.status(409).send()
   }
 }
 
-exports.putUserUpdate = async (req,res) => {
-  // TODO: Update User
-  // let userData
-  // await User.fetchUser(result => {
-  //   userData = result
-  // }, req.params.email)
-}
+exports.putUserUpdate = async (req,res) => {}
