@@ -4,6 +4,7 @@ const User = require('./../models/userSchema')
 exports.postUserSignUp = async (req,res) => {
   const userData = req.body.userData
   const isUserExisit = await User.exists({email: userData.email})
+
   if (!isUserExisit) {
     const encryptedPassword = await bcrypt.hash(userData.password, 10)
     const newUser = User({

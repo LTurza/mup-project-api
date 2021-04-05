@@ -6,6 +6,7 @@ exports.postUserSignIn = async (req,res) => {
   const password = req.body.password
   const user = await User.findOne({email: email})
   const isPasswordMatching  = await bcrypt.compare(password, user.password)
+
   if (isPasswordMatching){
     req.session.loggedIn = true
     res.status(200).send()
