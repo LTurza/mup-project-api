@@ -4,3 +4,4 @@ client/node_modules/
 .vscode/
 Dockerfile
 public/.DS_Store
+.env.*

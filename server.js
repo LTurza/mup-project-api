@@ -7,7 +7,7 @@ const userRouter = require('./server/routes/userRouter')
 const authRouter = require('./server/routes/authRoutes')
 const teamRouter = require('./server/routes/teamRouter')
 // * Utils
-
+require('dotenv-flow').config()
 const server = express()
 
 server.use(express.json())
