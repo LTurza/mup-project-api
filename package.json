@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha ./tests",
+    "test": "export NODE_ENV=test && nodemon --exec mocha ./server/tests",
     "start": "nodemon server.js"
   },
   "repository": {

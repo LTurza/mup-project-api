@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const User = require('./../models/userSchema')
 
-exports.postUserSignUp = async (req,res) => {
+exports.postUserSignUp = async (req, res) => {
   const userData = req.body.userData
   const isUserExisit = await User.exists({email: userData.email})
 
@@ -15,9 +15,9 @@ exports.postUserSignUp = async (req,res) => {
     })
     await newUser.save()
     res.status(201).send()
-  } else{
+  } else {
     res.status(409).send()
   }
 }
 
-exports.putUserUpdate = async (req,res) => {}
+exports.putUserUpdate = async (req, res) => {}

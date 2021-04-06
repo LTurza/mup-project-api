@@ -1,5 +1,6 @@
 node_modules/
 client/node_modules/
 .idea/
+.vscode/
 Dockerfile
 public/.DS_Store

@@ -2,7 +2,7 @@ const User = require('./../models/userSchema')
 const Team = require('./../models/teamSchema')
 const ObjectId = require('mongodb').ObjectId
 
-exports.postNewTeam = async (req,res) => {
+exports.postNewTeam = async (req, res) => {
   const {teamTitle, teamDescription, teamLogo, userId, organizationId} = req.body
 
   if (typeof teamTitle === 'string' && teamTitle.trimEnd().length > 0
@@ -43,7 +43,7 @@ exports.getAllTeams = async (req, res) => {
 exports.putNewTeamMember = async (req, res) => {
   const userId = req.params.userId
   const teamId = req.params.teamId
-  if(typeof userId === 'string' && userId.trim().length === 24
+  if (typeof userId === 'string' && userId.trim().length === 24
   && typeof teamId === 'string' && teamId.trim().length === 24) {
     const isTeamExist = await Team.exists({_id: teamId})
     const isUserExist = await User.exists({_id: userId})
@@ -60,6 +60,6 @@ exports.putNewTeamMember = async (req, res) => {
       res.status(400).json({msg: 'Invalid team or user'})
     }
   } else {
-    res.status(400).json({msg: 'Invalid data'})
+    res.status(400).send()
   }
 }
