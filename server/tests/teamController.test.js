@@ -19,7 +19,6 @@ describe ('teamController', () => {
       email: 'test@tesst.com',
       password: 'test'
     })
-    await user.save()
     const user2 = new User({
       _id: '606ad8bd35fc7065bb2f4d5d',
       firstName: 'test2',
@@ -27,8 +26,7 @@ describe ('teamController', () => {
       email: 'test2@tesst.com',
       password: 'test2'
     })
-    await user2.save()
-
+    
     const team = new Team({
       _id: '606ad8bd35fc7065bb2f4d5e',
       admin: {
@@ -42,14 +40,16 @@ describe ('teamController', () => {
       organization: '605b9ef2c9e7ae4af18f3bc4',
       members: ['606ad8bd35fc7065bb2f4d5d']
     })
+    await user.save()
+    await user2.save()
     await team.save()
-    
   })
 
 
-  after( async () => {
-    await db.dropCollection('teams')
-    await db.dropCollection('users')
+  after(done => {
+    db.dropCollection('teams')
+    db.dropCollection('users')
+    done()
   }) 
 
   describe ('Create new Team', () => {
