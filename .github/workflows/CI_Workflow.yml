@@ -1,0 +1,53 @@
+name: CI workflow
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+
+      - uses: LouisBrunner/checks-action@v1.1.1
+        if: always()
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Server Tests
+          status: in_progress
+          output: |
+            {"summary":"In Progress"}
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: npm install --dev
+
+      - name: Server tests
+        run: npm test
+
+      - name: Set check
+        if: ${{ success() }}
+        then:
+          uses: LouisBrunner/checks-action@v1.1.1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            name: Server Tests
+            status: complete
+            conclusion: success
+            output: |
+              {"summary":"Success"}
+        else: 
+          uses: LouisBrunner/checks-action@v1.1.1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            name: Server Tests
+            status: complete
+            conclusion: failure
+            output: |
+              {"summary":"Failed"}
