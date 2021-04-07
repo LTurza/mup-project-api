@@ -1,0 +1,10 @@
+@import './../styles/colors.scss';
+
+.home-page{
+  .home-page__container {
+    width: 100vw;
+    height: calc(90vh - 50px);
+    background-color: $color-dark + #111111;
+    color: $color-light;
+  }
+}
