@@ -43,7 +43,9 @@ describe ('teamController', () => {
       members: ['606ad8bd35fc7065bb2f4d5d']
     })
     await team.save()
+    
   })
+
 
   after( async () => {
     await db.dropCollection('teams')
