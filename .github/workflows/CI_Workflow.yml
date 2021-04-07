@@ -32,10 +32,9 @@ jobs:
       - name: Server tests
         run: npm test
 
-      - name: Set check
+      - name: Success
         uses: LouisBrunner/checks-action@v1.1.1
         if: ${{ success() }}
-        then:
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
             name: Server Tests
@@ -43,7 +42,10 @@ jobs:
             conclusion: success
             output: |
               {"summary":"Success"}
-        else:
+
+      - name: Failure
+        uses: LouisBrunner/checks-action@v1.1.1
+        if: ${{ failure() }}
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
             name: Server Tests
