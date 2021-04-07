@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import AccountCircleIcon from "@material-ui/icons/AccountCircle"
-import './../../../styles/MenageAccountButton.scss'
-import { ButtonDark } from './Buttons'
+import './menageAccountButton.scss'
 
+import AccountCircleIcon from "@material-ui/icons/AccountCircle"
+import { ButtonDark } from './Buttons'
 
 class MenageAccountButton extends Component {
   constructor(props){
@@ -38,19 +38,20 @@ class MenageAccountButton extends Component {
 
   render() {
     return (
-      <div className="account-section"
-           onMouseEnter={event =>this.accountButtonExtendHandler(event)}
-           onMouseLeave={event =>this.accountButtonShortenHandler(event)}
+      <div 
+        className="account-section"
+        onMouseEnter={event =>this.accountButtonExtendHandler(event)}
+        onMouseLeave={event =>this.accountButtonShortenHandler(event)}
       >
         <div className="account-section__header">
           <AccountCircleIcon className="account-section__header-icon"/>
           <span className="account-section__header-text">Manage Account</span>
         </div>
         {this.state.isActive ?
-        <ButtonDark btnId="sign-in-button" btnTitle="Sing In" click={() => this.props.userModalHandler('signIn', 'signUp')}/>
+          <ButtonDark btnId="sign-in-button" btnTitle="Sing In" click={() => this.props.userModalHandler('signIn', 'signUp')}/>
         : null}
         {this.state.isActive ?
-        <ButtonDark btnid="sign-up-button" btnTitle="Sing Up" click={() => this.props.userModalHandler('signUp', 'signIn')} />
+          <ButtonDark btnid="sign-up-button" btnTitle="Sing Up" click={() => this.props.userModalHandler('signUp', 'signIn')} />
         : null}
       </div>
     )

@@ -9,6 +9,7 @@
   font-size: 14px;
   z-index: 9;
   width: calc(100vw - 40px);
+  
   &.info {
     background-color: rgba(68, 168, 225, 0.7);
     color: #0e37a7;
@@ -27,7 +28,7 @@
     border: 1px solid #0b8525;
   }
 
-  .alert-modal--close{
+  &--close{
     position: absolute;
     top: 28px;
     right:  10px;
