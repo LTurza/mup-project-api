@@ -3,7 +3,7 @@ name: CI workflow
 on: [push]
 
 jobs:
-  test:
+  Tests:
 
     runs-on: ubuntu-latest
 
@@ -38,7 +38,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Server Tests
-          status: complete
+          status: completed
           conclusion: success
           output: |
             {"summary":"Success"}
@@ -49,7 +49,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Server Tests
-          status: complete
+          status: completed
           conclusion: failure
           output: |
             {"summary":"Failed"}
