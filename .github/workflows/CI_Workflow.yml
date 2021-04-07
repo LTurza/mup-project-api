@@ -35,21 +35,21 @@ jobs:
       - name: Success
         uses: LouisBrunner/checks-action@v1.1.1
         if: ${{ success() }}
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            name: Server Tests
-            status: complete
-            conclusion: success
-            output: |
-              {"summary":"Success"}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Server Tests
+          status: complete
+          conclusion: success
+          output: |
+            {"summary":"Success"}
 
       - name: Failure
         uses: LouisBrunner/checks-action@v1.1.1
         if: ${{ failure() }}
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            name: Server Tests
-            status: complete
-            conclusion: failure
-            output: |
-              {"summary":"Failed"}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Server Tests
+          status: complete
+          conclusion: failure
+          output: |
+            {"summary":"Failed"}
