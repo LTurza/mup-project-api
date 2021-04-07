@@ -52,7 +52,7 @@ class App extends Component {
       {this.state.activeAlert ? this.showAlertHandler('info', 'asdasdas', 'title') : null}
       {this.state.activeUserAccountModal.signIn || this.state.activeUserAccountModal.signUp 
         ?
-          <UserAccountModal  activeModal={this.state.activeUserAccountModal} userModalHandler={this.userModalHandler}/>
+          <UserAccountModal activeModal={this.state.activeUserAccountModal} userModalHandler={this.userModalHandler}/>
         :
           null
       }

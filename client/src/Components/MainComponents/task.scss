@@ -1,0 +1,29 @@
+@import 'src/styles/colors';
+
+.task{
+  width: 92%;
+  margin: 10px 2%;
+  padding: 10px 2%;
+  border: 1px solid $color-blue-light;
+  border-radius: 5px;
+  color: $color-light;
+  background-color: rgba($color: $color-light, $alpha: .05);
+
+  &-description{
+    margin-bottom: 10px;
+  }
+
+  &-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-author{
+    font-size: .8rem;
+  }
+
+  &--actions{
+    padding: 0 5px;
+  }
+
+}
