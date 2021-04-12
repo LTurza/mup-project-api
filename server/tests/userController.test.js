@@ -11,9 +11,9 @@ const { expect } = chai
 
 
 describe ('userController', () => {
-  after( async () => {
-    await db.dropCollection('users')
-  })
+  after(() => {
+    return db.dropCollection('users')
+  }) 
 
   describe('Create new user', () => {
     it('should response with status 201 if successfuly', (done) => {

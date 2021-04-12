@@ -46,10 +46,11 @@ describe ('teamController', () => {
   })
 
 
-  after(done => {
-    db.dropCollection('teams')
-    db.dropCollection('users')
-    done()
+  after(() => {
+    return Promise.all([
+      db.dropCollection('teams'),
+      db.dropCollection('users')
+    ])
   }) 
 
   describe ('Create new Team', () => {
