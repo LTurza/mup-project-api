@@ -41,9 +41,13 @@ describe ('teamController', () => {
       organization: '605b9ef2c9e7ae4af18f3bc4',
       members: ['606ad8bd35fc7065bb2f4d5d']
     })
-    return Promise.all([user.save(), user2.save(), team.save()])
-  })
 
+    return Promise.all([
+      user.save(),
+      user2.save(),
+      team.save()
+    ])
+  })
 
   after(() => {
     return Promise.all([

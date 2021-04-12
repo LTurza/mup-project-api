@@ -1,4 +1,5 @@
 require('dotenv-flow').config()
+require('./server/utils/debug')
 const express = require('express')
 const session = require('express-session')
 const db = require('./server/utils/dbConnection')
@@ -6,6 +7,7 @@ const appRouter = require('./server/routes/appRoutes')
 const userRouter = require('./server/routes/userRouter')
 const authRouter = require('./server/routes/authRoutes')
 const teamRouter = require('./server/routes/teamRouter')
+
 const server = express()
 
 server.use(express.json())
@@ -24,10 +26,14 @@ server.use(authRouter)
 server.use('/teams',teamRouter)
 server.use('/user', userRouter)
 
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function() {
+db.on('error', function () {
+  serverLog('mongo Connection failed! Closing server')
+  server.close()
+})
+
+db.once('open', function () {
   server.listen(process.env.PORT || 5000, () => {
-    console.log(`DB CONNECTED!\nServer listen on port: ${process.env.PORT || 5000}`)
+    serverLog(`DB connected successfully!\nServer listen on port: ${process.env.PORT || 5000}`)
   })
 })
 
