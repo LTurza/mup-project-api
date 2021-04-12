@@ -8,8 +8,6 @@ chai.should()
 
 const { expect } = chai
 
-
-
 describe ('userController', () => {
   after(() => {
     return db.dropCollection('users')

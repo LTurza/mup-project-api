@@ -11,7 +11,7 @@ chai.should()
 const { expect } = chai
 
 describe ('teamController', () => {
-  before(async () => {
+  before(() => {
     const user = new User({
       _id: '606ad8bd35fc7065bb2f4d5f',
       firstName: 'test',
@@ -19,6 +19,7 @@ describe ('teamController', () => {
       email: 'test@tesst.com',
       password: 'test'
     })
+
     const user2 = new User({
       _id: '606ad8bd35fc7065bb2f4d5d',
       firstName: 'test2',
@@ -40,9 +41,7 @@ describe ('teamController', () => {
       organization: '605b9ef2c9e7ae4af18f3bc4',
       members: ['606ad8bd35fc7065bb2f4d5d']
     })
-    await user.save()
-    await user2.save()
-    await team.save()
+    return Promise.all([user.save(), user2.save(), team.save()])
   })
 
 
@@ -77,7 +76,7 @@ describe ('teamController', () => {
         teamLogo: 'testLogo',
         organizationId: '605b9ef2c9e7ae4af18f3bc4'
       }).end((err, res) => {
-        expect(res).to.be.status(409)
+        expect(res.status).to.eq(409)
         expect(err).to.be.null
         done()
       })
@@ -92,7 +91,7 @@ describe ('teamController', () => {
           teamLogo: 'testLogo',
           organizationId: '605b9ef2c9e7ae4af18f3bc4'
         }).end((err,res) => {
-        expect(res).to.be.status(400)
+        expect(res.status).to.eq(400)
         expect(err).to.be.null
         done()
       })
