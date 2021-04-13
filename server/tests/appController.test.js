@@ -1,19 +1,12 @@
-// const chai = require('chai')
-// const chaiHttp = require('chai-http')
-// const app = require('../../server')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
 
-// chai.use(chaiHttp)
-// chai.should()
-// const { expect } = chai
+chai.use(chaiHttp)
+chai.should()
+const { expect } = chai
 
-// describe ('appController', () => {
-//   describe ('GET paths', () => {
-//     it (' "/" route should response with status 200', (done)=>{
-//       chai.request(app).get('/').end((err, res) => {
-//         expect(res).to.be.status(200)
-//         expect(err).to.be.null
-//         done()
-//       })
-//     })
-//   })
-// })
+describe('placeholder', () => {
+  it('placeholder it', () => {
+    expect(1).to.be.eq(1)
+  })
+})

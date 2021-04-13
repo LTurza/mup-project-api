@@ -3,9 +3,14 @@ const userController = require('./../controllers/userController')
 
 const router = express.Router()
 
-router.post('/signUp', userController.postUserSignUp)
+router.post('/signUp', userController.postNewUser)
 
-router.put('/update/:email' ,userController.putUserUpdate)
+router.put('/update/:userId' ,userController.putUpdateUser)
+
+router.put('/update/password/:userId', userController.putChangeUserPassword)
+
+router.get('/fetchUsers', userController.getFetchUsers)
+
+router.get('/countUsers', userController.getUserCount)
 
 module.exports = router
-

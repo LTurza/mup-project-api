@@ -16,12 +16,10 @@ describe ('userController', () => {
   describe('Create new user', () => {
     it('should response with status 201 if successfuly', (done) => {
       chai.request(app).post('/user/signUp').send({
-        userData: {
           firstName: 'test',
           lastName: 'test',
           password: 'qwqwqwqwqw',
           email: 'test@test.com'
-        }
       }).end((err, res) => {
         expect(res.status).to.eq(201)
         expect(err).to.be.null
@@ -31,12 +29,10 @@ describe ('userController', () => {
 
     it('should response with status 409 if user already exists', (done) => {
       chai.request(app).post('/user/signUp').send({
-        userData: {
           firstName: 'test',
           lastName: 'test',
           password: 'qwqwqwqwqw',
           email: 'test@test.com'
-        }
       }).end((err, res) => {
         expect(res.status).to.eq(409)
         expect(err).to.be.null
