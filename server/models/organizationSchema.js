@@ -7,8 +7,9 @@ const organizationSchema = new Schema({
     required: true,
   },
   teams: Array,
+  members: Array,
   admin: {
-    _id: {
+      id: {
       type: mongoose.ObjectId,
       required: true,
     },
