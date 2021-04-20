@@ -7,6 +7,8 @@ router.post('/newOrganization', organizationController.postNewOrganization)
 
 router.put('/addMembers', organizationController.putAddOrganizationMember)
 
-router.post('/fetch/:userId/organizations', organizationController.getUserOrganizations)
+router.get('/fetch/:userId/organizations', organizationController.getUserOrganizations)
+
+router.get('/count', organizationController.getOrganizationCount)
 
 module.exports = router

@@ -29,4 +29,7 @@ const newOrganizationMemberSchema = {
   }
 }
 
-module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema }
+
+
+
+module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, }

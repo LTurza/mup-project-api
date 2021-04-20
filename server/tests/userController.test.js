@@ -27,7 +27,7 @@ describe ('userController', () => {
       })
     })
 
-    it('should response with status 409 if user already exists', (done) => {
+    it('should response with status 409 if user already exists', done => {
       chai.request(app).post('/user/signUp').send({
           firstName: 'test',
           lastName: 'test',
@@ -38,6 +38,9 @@ describe ('userController', () => {
         expect(err).to.be.null
         done()
       })
+    })
+    it('should return all users counted', done => {
+      chai.request(app).
     })
   })
 })

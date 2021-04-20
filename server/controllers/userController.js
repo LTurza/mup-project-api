@@ -69,19 +69,19 @@ exports.putChangeUserPassword = async (req, res) => {
 }
 
 exports.getFetchUsers = async (req, res) => {
-  const users = await User.find({}).skip(+req.params.skip).limit(10)
-  res.status(200).json(users)
-}
-
-exports.getUserCount = async (req, res) => {
   const validate = ajv.compile(fetchUsersSchema)
   const isValid = validate(req.body)
-  console.log(isValid)
 
   if (isValid) {
-    const userCount = await User.count()
-    res.status(200).json(userCount)
+    const users = await User.find({}).skip(+req.body.skip).limit(10)
+    console.log(users)
+    res.status(200).json(users)
   } else {
     res.status(400).send()
   }
+}
+
+exports.getUserCount = async (req, res) => {
+  const userCount = await User.count()
+  res.status(200).json(userCount)
 }

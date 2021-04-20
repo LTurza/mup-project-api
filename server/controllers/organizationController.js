@@ -4,6 +4,7 @@ const isStringValidObjectId = require('./../utils/isStringValidObjectId')
 const {
   newOrganizationDataSchema,
   newOrganizationMemberSchema,
+  getUserOrganizationsSchema
 } = require('./../validation/organizationValidationScheam')
 const Ajv = require('ajv')
 
@@ -73,11 +74,26 @@ exports.putAddOrganizationMember = async (req, res) => {
 }
 
 exports.getUserOrganizations = async (req, res) => {
-  const user = await User.findById(req.params.userId)
-  const organizations = await Organization.find({
-    '_id':{
-      $in: user.organizations
+  const isUserValid ={
+    const fetchUserOrganizationsSchema = {
+      type: 'object',
+      required: ['skip'],
+      properties: {
+        userId: { type: 'number' }
+      }
     }
-  })
+  }
+  console.log(isValid)
+  // const user = await User.findById(req.params.userId)
+  // const organizations = await Organization.find({
+  //   '_id':{
+  //     $in: user.organizations
+  //   }
+  // })
   res.status(200).json(organizations)
+}
+
+exports.getOrganizationCount = async (req, res) => {
+  const organizationCount = await Organization.count()
+  res.status(200).json(organizationCount)
 }

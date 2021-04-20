@@ -14,7 +14,7 @@ exports.postNewTeam = async (req, res) => {
       const user = await User.findById(userId)
       const newTeam = Team({
         admin: {
-          _id: ObjectId(user._id),
+          id: ObjectId(user._id),
           firstName: user.firstName,
           lastName: user.lastName
         },
