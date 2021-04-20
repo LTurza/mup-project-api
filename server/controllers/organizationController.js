@@ -85,6 +85,6 @@ exports.getUserOrganizations = async (req, res) => {
 }
 
 exports.getOrganizationCount = async (req, res) => {
-  const organizationCount = await Organization.count()
+  const organizationCount = await Organization.countDocuments()
   res.status(200).json(organizationCount)
 }

@@ -81,6 +81,6 @@ exports.getFetchUsers = async (req, res) => {
 }
 
 exports.getUserCount = async (req, res) => {
-  const userCount = await User.count()
+  const userCount = await User.countDocuments()
   res.status(200).json({userCount: userCount})
 }
