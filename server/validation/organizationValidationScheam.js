@@ -1,16 +1,16 @@
 const newOrganizationDataSchema = {
   type: 'object',
-  required: ['name', 'adminId', 'members'],
+  required: ['organizationName', 'adminId', 'members'],
   properties:{
-    name: {
+    organizationName: {
       type: 'string',
       minLength: 3,
       maxLength: 32,
     },
     adminId: {
       type: 'string',
-    minLength: 24,
-    maxLength: 24
+      minLength: 24,
+      maxLength: 24
     },
     members: { type:  'array' }
   }
@@ -28,8 +28,5 @@ const newOrganizationMemberSchema = {
     newMembers: { type:  'array' }
   }
 }
-
-
-
 
 module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, }
