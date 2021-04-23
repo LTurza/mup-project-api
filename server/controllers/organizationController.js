@@ -24,8 +24,6 @@ exports.postNewOrganization = async (req, res) => {
       .then(async result => {
         const isUserExist = result[0]
         const isOrganizationExist =result[1]
-        console.log(isUserExist, isOrganizationExist)
-
 
         if (isUserExist && !isOrganizationExist) {
           const userData = await User.findById({_id: adminId})
@@ -89,7 +87,6 @@ exports.getUserOrganizations = async (req, res) => {
 
     for (const organizationId of user.organizations){
       const isOrganizationValidId = isStringValidObjectId(organizationId)
-      console.log(isOrganizationValidId)
       isOrganizationValidId ? organizations.push(await Organization.findById(organizationId)) : null
     }
     res.status(200).json(organizations)
