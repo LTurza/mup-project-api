@@ -44,16 +44,4 @@ const fetchUsersSchema = {
   }
 }
 
-const fetchUserOrganizationsSchema = {
-  type: 'object',
-  required: ['skip'],
-  properties: {
-    userId: {
-      type: 'string',
-      minLength: 24,
-      maxLength: 24,
-    }
-  }
-}
-
 module.exports = { newUserDataSchema, updateUserDataSchema, changeUserPasswordSchema, fetchUsersSchema }

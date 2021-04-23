@@ -29,4 +29,12 @@ const newOrganizationMemberSchema = {
   }
 }
 
-module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, }
+const fetchUserOrganizationsSchema = {
+  type: 'object',
+  required: ['skip'],
+  properties: {
+    skip: { type: 'number'}
+  }
+}
+
+module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, fetchUserOrganizationsSchema, }

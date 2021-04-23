@@ -4,7 +4,7 @@ const isStringValidObjectId = require('./../utils/isStringValidObjectId')
 const {
   newOrganizationDataSchema,
   newOrganizationMemberSchema,
-  getUserOrganizationsSchema
+  fetchUserOrganizationsSchema
 } = require('./../validation/organizationValidationScheam')
 const Ajv = require('ajv')
 
@@ -15,6 +15,7 @@ exports.postNewOrganization = async (req, res) => {
   const validate = ajv.compile(newOrganizationDataSchema)
   const isValid = validate(req.body)
   const isAdminIdValid = isStringValidObjectId(adminId)
+
   if (isValid && isAdminIdValid){
     Promise.all([
       User.exists({_id: adminId}),
@@ -23,9 +24,12 @@ exports.postNewOrganization = async (req, res) => {
       .then(async result => {
         const isUserExist = result[0]
         const isOrganizationExist =result[1]
+        console.log(isUserExist, isOrganizationExist)
+
 
         if (isUserExist && !isOrganizationExist) {
           const userData = await User.findById({_id: adminId})
+          console.log(userData)
           const newOrganization = new Organization({
             name: organizationName,
             admin: {
@@ -41,7 +45,7 @@ exports.postNewOrganization = async (req, res) => {
             await userData.save()
           ])
             .then(() => {
-              res.status(200).send()
+              res.status(201).send()
             })
             .catch(error => serverLog(error))
         } else {
@@ -75,13 +79,22 @@ exports.putAddOrganizationMember = async (req, res) => {
 }
 
 exports.getUserOrganizations = async (req, res) => {
-  // const user = await User.findById(req.params.userId)
-  // const organizations = await Organization.find({
-  //   '_id':{
-  //     $in: user.organizations
-  //   }
-  // })
-  // res.status(200).json()
+  const validate = ajv.compile(fetchUserOrganizationsSchema)
+  const isvalid = validate(req.body)
+  const isUserIdValid = isStringValidObjectId(req.params.userId)
+
+  if (isvalid && isUserIdValid){
+    const user = await User.findById({_id: '606b40ee21001d6e7ae4083b'})
+    const organizations = []
+
+    for (const organizationId of user.organizations){
+      const isOrganizationValidId = isStringValidObjectId(organizationId)
+      console.log(isOrganizationValidId)
+      isOrganizationValidId ? organizations.push(await Organization.findById(organizationId)) : null
+    }
+    res.status(200).json(organizations)
+  }
+  res.status(400).send()
 }
 
 exports.getOrganizationCount = async (req, res) => {
