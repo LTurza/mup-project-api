@@ -1,30 +1,86 @@
 const bcrypt = require('bcrypt')
-const User = require('./../models/user')
-const passwordHasher = require('./../utils/passwordHasher')
+const User = require('./../models/userSchema')
+const isStringValidObjectId = require('./../utils/isStringValidObjectId')
+const {
+  newUserDataSchema,
+  updateUserDataSchema,
+  changeUserPasswordSchema,
+  fetchUsersSchema
+} = require('./../validation/userValidationSchema')
+const Ajv = require('ajv')
 
-exports.postUserSignUp = async (req,res) => {
-  const userData = req.body.userData
-  const user = await User.fetchUserByData('email', userData.email)
+const ajv = new Ajv()
 
-  if (user !== null) {
-    res.status(409).json({message: 'User with this email address already exists.'})
-  } else {
-    const encryptedPassword = await bcrypt.hash(userData.password, 10) 
-    const newUser = new User({
-      firstName: userData.firstName,
-      lastName: userData.lastName,
+exports.postNewUser = async (req, res) => {
+  const validate = ajv.compile(newUserDataSchema)
+  const isValid = validate(req.body)
+  const email = req.body.email
+
+  const isUserExists = await User.exists({email: email})
+
+  if (!isUserExists && isValid) {
+    const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+    const newUser = User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       password: encryptedPassword,
-      email: userData.email,
+      email,
     })
-    await newUser.addUser()
-    res.status(201).json({message: 'User was registred succesfully'})
+    await newUser.save()
+    res.status(201).send()
+  } else {
+    res.status(409).send()
   }
 }
 
-exports.putUserUpdate = async (req,res) => {
-  // TODO: Update User
-  // let userData
-  // await User.fetchUser(result => {
-  //   userData = result
-  // }, req.params.email)
+exports.putUpdateUser = async (req, res) => {
+  const validate = ajv.compile(updateUserDataSchema)
+  const isValid = validate(req.body)
+  const isUserIdValid = isStringValidObjectId(req.params.userId)
+  if (isValid && isUserIdValid) {
+    await User.findByIdAndUpdate(req.params.userId, {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
+    })
+    res.status(200).send()
+  } else {
+    res.status(400).send()
+  }
+}
+
+exports.putChangeUserPassword = async (req, res) => {
+  const validate = ajv.compile(changeUserPasswordSchema)
+  const isValid = validate(req.body)
+
+  if (isValid) {
+    const userData = await User.findById(req.params.userId)
+    const isOldPasswordValid = await bcrypt.compare(req.body.oldPassword, userData.password)
+    if (isOldPasswordValid) {
+      userData.password = await bcrypt.hash(req.body.newPassword, 10)
+      await userData.save()
+      res.status(200).send()
+    } else {
+      res.status(401).send()
+    }
+  } else {
+    res.status(400).send()
+  }
+}
+
+exports.getFetchUsers = async (req, res) => {
+  const validate = ajv.compile(fetchUsersSchema)
+  const isValid = validate(req.body)
+
+  if (isValid) {
+    const users = await User.find({}).skip(+req.body.skip).limit(10)
+    res.status(200).json(users)
+  } else {
+    res.status(400).send()
+  }
+}
+
+exports.getUserCount = async (req, res) => {
+  const userCount = await User.countDocuments()
+  res.status(200).json({userCount: userCount})
 }
