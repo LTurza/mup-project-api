@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const User = require('./../models/userSchema')
+const jwt = require('jsonwebtoken')
 
 exports.postUserSignIn = async (req,res) => {
   const email = req.body.email
@@ -8,8 +9,13 @@ exports.postUserSignIn = async (req,res) => {
   const isPasswordMatching  = await bcrypt.compare(password, user.password)
 
   if (isPasswordMatching){
-    req.session.loggedIn = true
-    res.status(200).send()
+    const token = jwt.sign({
+      expiresIn: Math.floor(Date.now() / 1000) + (60 * 60),
+      id: user._id,
+    }, 'secretKey')
+    Object.assign(user, {token})
+    console.log(user)
+    res.status(200).send(token)
   } else {
     res.status(401).send()
   }
