@@ -9,17 +9,17 @@ const { expect } = chai
 
 describe('organization Controller', () => {
   after(async () => {
-    const organization = await Organization.findOne({name: 'testOrganization'})
+    const organization = await Organization.findOne({name: 'test'})
     await organization.remove()
   })
 
   it('should response with status code 201 if successfully created', done => {
     chai.request(app).post('/organization/newOrganization').send({
-      organizationName: 'testOrganization',
-      adminId: '607f35f97d8852835f5746de',
+      organizationName: 'test',
+      adminId: '6086ed02e7fb200b8df02cd8',
       members: [
-        '607f35f97d8852835f5746de',
-        '60828e19e18c80093650b9be',
+        '6086ed02e7fb200b8df02cd8',
+        '6086ed0ee7fb200b8df02cd9',
       ]
     }).end((err,res) => {
       expect(res.status).to.eq(201)
@@ -30,11 +30,11 @@ describe('organization Controller', () => {
 
   it('should response with status code 409 if organization already exists', done => {
     chai.request(app).post('/organization/newOrganization').send({
-      organizationName: 'testOrganization',
-      adminId: '607f35f97d8852835f5746de',
+      organizationName: 'test',
+      adminId: '6086ed02e7fb200b8df02cd8',
       members: [
-        '607f35f97d8852835f5746de',
-        '60828e19e18c80093650b9be',
+        '6086ed02e7fb200b8df02cd8',
+        '6086ed0ee7fb200b8df02cd9',
       ]
     }).end((err,res) => {
       expect(res.status).to.eq(409)

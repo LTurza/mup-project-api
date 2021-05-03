@@ -25,6 +25,7 @@ exports.postNewUser = async (req, res) => {
       lastName: req.body.lastName,
       password: encryptedPassword,
       email,
+      token: '',
     })
     await newUser.save()
     res.status(201).send()

@@ -27,7 +27,6 @@ exports.postNewOrganization = async (req, res) => {
 
         if (isUserExist && !isOrganizationExist) {
           const userData = await User.findById({_id: adminId})
-          console.log(userData)
           const newOrganization = new Organization({
             name: organizationName,
             admin: {

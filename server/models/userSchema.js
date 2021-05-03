@@ -19,6 +19,7 @@ const userSchema = new Schema({
     required: true,
   },
   organizations: Array,
+  token: String,
 })
 
 module.exports = mongoose.model('User', userSchema, 'users')
