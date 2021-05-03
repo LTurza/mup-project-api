@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {useDispatch} from "react-redux";
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 import './signInPanel.scss'
 
-import { ModalEmailField, ModalPasswordField } from './ModalFields'
+import { ModalTextField, ModalPasswordField } from './ModalFields'
 import { ButtonPriamry, ButtonSecondary } from './Buttons'
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -20,9 +21,9 @@ const UserSignIn = () => {
       email: userEmail,
       password: userPassword
     }
-    console.log(userData)
     const response = await axios.post('http://localhost:5000/login', userData)
-    await setUserAuthorization(response.data.authorization)
+    console.log(jwt.decode(response.data))
+
   }
 
     return (
@@ -33,7 +34,7 @@ const UserSignIn = () => {
             onClick={() => dispatch({type: 'app/hideUserSignInModal'})}
           />
           <h2 className="login-panel__header">Sign In</h2>
-          <ModalEmailField
+          <ModalTextField
             classCss="login-panel__email"
             label="Email" fieldName="email"
             dataHandler={setUserEmail}

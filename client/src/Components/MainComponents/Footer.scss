@@ -1,0 +1,38 @@
+@import 'src/styles/colors';
+@import 'src/styles/size';
+
+.footer{
+  box-shadow: 0 0 5px 1px $color-blue-dark;
+  background-color: $color-dark;
+  color: white;
+  display: flex;
+
+  overflow: hidden;
+
+  @media screen and (max-width: $up-to-large) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: calc(100vw - 40px);
+    text-align: center;
+
+    &__authors{
+
+      &-header{
+        font-weight:300;
+        font-size: 1.5rem;
+      }
+    }
+    .footer-about{
+      padding: 20px;
+    }
+  }
+  @media screen and (min-width: $large) {
+    padding: 20px 40px;
+
+    &__authors {
+      width: 50%;
+    }
+  }
+}

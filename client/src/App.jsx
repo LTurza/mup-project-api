@@ -1,15 +1,10 @@
-// * libs
-import React, { Component } from 'react'
-// import axios from 'axios'
+import React from 'react'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// * styles
 import './styles/App.scss';
-// * components
 import HomePage from './views/HomePage'
 import Resources from './Components/Resorces'
 import NaviTop from './Components/MainComponents/NaviTop'
 import UserAccountModal from "./Components/MainComponents/UserAccountModal";
-import AlertModal from './Components/MainComponents/ComponentsElements/Alert'
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -29,7 +24,7 @@ const App = () => {
 
         <Switch>
             {/*<Route path='/kanbanBoard'>*/}
-              {/*   <KanbanBoard />*/}
+            {/*     <KanbanBoard />*/}
             {/*  </Route>*/}
             <Router path='/resources'>
               <Resources />

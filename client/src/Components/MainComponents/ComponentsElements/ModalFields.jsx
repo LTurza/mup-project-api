@@ -9,28 +9,11 @@ const ModalTextField = ({fieldName, label, dataHandler, classCss}) => {
         className="modal-input-text__field"
         type="text"
         name={fieldName}
-        onChange={(event) => dataHandler(event, fieldName)}
+        onChange={(event) => dataHandler(event.target.value, fieldName)}
         required
       />
       <label className="modal-input-text__label" htmlFor={fieldName}>
         <span className="modal-input-text__label--name">{label}</span>
-      </label>
-    </div>
-  )
-}
-
-const ModalEmailField = ({fieldName, label, dataHandler, classCss}) => {
-  return(
-    <div className={"modal-input-email " + classCss}>
-      <input
-        className="modal-input-email__field"
-        type="email"
-        name={fieldName}
-        onChange={event => dataHandler(event.target.value)}
-        required
-      />
-      <label className="modal-input-email__label" htmlFor={fieldName}>
-        <span className="modal-input-email__label--name">{label}</span>
       </label>
     </div>
   )
@@ -43,7 +26,7 @@ const ModalPasswordField = ({fieldName, label, dataHandler, classCss}) => {
         className="modal-input-password__field"
         type="password"
         name={fieldName}
-        onChange={event => dataHandler(event.target.value)}
+        onChange={(event) => dataHandler(event.target.value, fieldName)}
         required
       />
       <label className="modal-input-password__label" htmlFor={fieldName}>
@@ -69,4 +52,4 @@ const ModalTextArea = ({fieldName, label, dataHandler, classCss}) => {
   )
 }
 
-export {ModalTextField, ModalEmailField, ModalPasswordField, ModalTextArea}
+export {ModalTextField, ModalPasswordField, ModalTextArea}
