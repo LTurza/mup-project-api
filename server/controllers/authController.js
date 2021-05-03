@@ -12,6 +12,9 @@ exports.postUserSignIn = async (req,res) => {
     const token = jwt.sign({
       expiresIn: Math.floor(Date.now() / 1000) + (60 * 60),
       id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
     }, 'secretKey')
     user.save()
     res.status(200).send(token)
