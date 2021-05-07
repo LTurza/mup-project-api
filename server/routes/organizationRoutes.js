@@ -1,7 +1,10 @@
 const express = require('express')
 const organizationController = require('./../controllers/organizationController')
+const authController = require('./../controllers/authController')
 
 const router = express.Router()
+
+// router.use('/', authController.validateToken)
 
 router.post('/newOrganization', organizationController.postNewOrganization)
 

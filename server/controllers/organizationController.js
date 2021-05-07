@@ -11,9 +11,13 @@ const Ajv = require('ajv')
 const ajv = new Ajv()
 
 exports.postNewOrganization = async (req, res) => {
-  const {organizationName, adminId} = req.body
+  const {organizationName, adminId, members} = req.body
   const validate = ajv.compile(newOrganizationDataSchema)
-  const isValid = validate(req.body)
+  const isValid = validate({
+    organizationName,
+    adminId,
+    members,
+  })
   const isAdminIdValid = isStringValidObjectId(adminId)
 
   if (isValid && isAdminIdValid){

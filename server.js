@@ -23,7 +23,7 @@ server.use((req, res, next) => {
 })
 
 server.use(appRouter)
-server.use(authRouter)
+server.use('/auth/', authRouter)
 server.use('/teams',teamRouter)
 server.use('/user', userRouter)
 server.use('/organization', organizationRouter)
