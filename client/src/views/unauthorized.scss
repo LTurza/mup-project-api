@@ -1,0 +1,28 @@
+@import "src/styles/colors";
+
+.unauthorized { 
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-dark;
+  color: $color-light;
+
+  &__header {
+    font-size: 2rem;
+  }
+
+  &__content {
+    font-size: 1.2rem;
+
+    &-link {
+      color: $color-blue-dark;
+
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+}

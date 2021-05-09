@@ -15,7 +15,7 @@
       justify-content: center;
 
       &.alt {
-        background-color: $color-dark + #111111;
+        background-color: $color-dark;
       }
 
       &-header{
@@ -34,7 +34,7 @@
       padding: 20px 40px;
       width: calc(100vw - 80px);
       &.alt {
-        background-color: $color-dark + #111111;
+        background-color: $color-dark;
         flex-direction: column;
         justify-content: center;
       }

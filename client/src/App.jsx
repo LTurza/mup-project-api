@@ -2,20 +2,18 @@ import React from 'react'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './styles/App.scss';
 import HomePage from './views/HomePage'
-import Resources from './Components/Resorces'
+import Organizations from './views/Organizations'
 import NaviTop from './Components/MainComponents/NaviTop'
 import UserAccountModal from "./Components/MainComponents/UserAccountModal";
-import { useSelector, useDispatch } from "react-redux";
-
+import Unathorized from './views/Unathorized'
+import { useSelector} from "react-redux";
 
 const selectModals = state => state.modals
+const userDataStore = state => state.user
 
 const App = () => {
   const modals = useSelector(selectModals)
-  const dispatch = useDispatch()
-  const showModal = () => {
-    dispatch({type: 'app/showAlert'})
-  }
+  const user = useSelector(userDataStore)
   return(
     <div>
       <Router>
@@ -26,12 +24,12 @@ const App = () => {
             {/*<Route path='/kanbanBoard'>*/}
             {/*     <KanbanBoard />*/}
             {/*  </Route>*/}
-            <Router path='/resources'>
-              <Resources />
-            </Router>
-            <Route path='/'>
+            <Route exact path='/'>
               <HomePage />
             </Route>
+            <Router exact path='/organizations'>
+              {user.token ? <Organizations /> : <Unathorized />}
+            </Router>
           </Switch>
       </Router>
     </div>

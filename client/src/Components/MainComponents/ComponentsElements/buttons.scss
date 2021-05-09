@@ -17,8 +17,8 @@
     color: $color-light;
 
     &:hover{
-      background-color: $color-blue-dark + #111111;
-      color: $color-light + #111111;
+      background-color: $color-blue-dark ;
+      color: $color-light;
       transition-duration: 0.3s;
     }
   }
@@ -28,8 +28,8 @@
     color: $color-light;
 
     &:hover{
-      background-color: $color-red + #111111;
-      color: $color-light + #111111;
+      background-color: $color-red;
+      color: $color-light;
       transition-duration: .3s;
     }
   }
@@ -39,9 +39,9 @@
     border: 1px solid $color-blue-dark;
 
     &:hover {
-      background-color: $color-dark + #111111;
-      color: $color-light + #111111;
-      border: 1px solid $color-blue-dark + #111111;
+      background-color: $color-dark;
+      color: $color-light;
+      border: 1px solid $color-blue-dark;
       transition-duration: .3s;
     }
   }

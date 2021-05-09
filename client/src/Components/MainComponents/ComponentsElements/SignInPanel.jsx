@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 
 import './signInPanel.scss'
 
@@ -12,7 +11,6 @@ import CloseIcon from '@material-ui/icons/Close';
 const UserSignIn = () => {
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
-  const [userAuthorization, setUserAuthorization] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -21,9 +19,8 @@ const UserSignIn = () => {
       email: userEmail,
       password: userPassword
     }
-    const response = await axios.post('http://localhost:5000/login', userData)
-    console.log(jwt.decode(response.data))
-
+    const response = await axios.post('http://localhost:5000/auth/login', userData)
+    dispatch({type: 'user/login', payload: {...response.data}})
   }
 
     return (
