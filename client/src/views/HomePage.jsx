@@ -1,6 +1,6 @@
 import React from 'react'
 import './HomePage.scss'
-import kanbanImg from './../assets/kanban.jpg'
+import kanbanImg from './../assets/logo.png'
 import Footer from './../Components/MainComponents/Footer'
 
 const HomePage = () => {

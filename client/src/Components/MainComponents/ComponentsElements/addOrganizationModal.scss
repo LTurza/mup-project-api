@@ -1,0 +1,24 @@
+@import "src/styles/colors";
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $color-dark, $alpha: 0.4);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .add-organization-modal{
+    background-color: $color-dark;
+    min-width: 400px;
+    width: 40%;
+    min-height: 500px;
+    box-shadow: 0 0 5px 1px $color-blue-dark;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

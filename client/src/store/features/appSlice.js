@@ -3,6 +3,7 @@ const initialState = {
     signIn: false,
     alert: false,
     loading: false,
+    addOrganization: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -55,6 +56,18 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      }
+    }
+    case 'app/showOrganizationAddModal': {
+      return {
+        ...state,
+        signUp: true,
+      }
+    }
+    case 'app/hideOrganizationAddModal': {
+      return {
+        ...state,
+        signUp: false,
       }
     }
     default:

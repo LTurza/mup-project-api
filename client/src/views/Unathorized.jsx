@@ -14,7 +14,7 @@ const Unauthorized = () => {
           <span 
           className="unauthorized__content-link" 
           onClick={() => dispatch({type: 'app/showUserSignInModal'})}>
-            Sign In
+             Sign In
           </span>
           to Continue
         </p>

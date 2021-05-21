@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react'
+import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 
 import './menageAccountButton.scss'
@@ -8,7 +8,7 @@ import { ButtonDark } from './Buttons'
 
 const MenageAccountButton = () => {
 
-  const [active, setActive] = useState(true)
+  const [active] = useState(true)
   const dispatch = useDispatch()
 
   const accountButtonExtendHandler = (event) => {
