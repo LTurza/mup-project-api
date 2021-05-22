@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import appReducer from './features/appSlice'
+import modalReducer from './features/modalSlice'
 import userReducer from './features/userSlice'
 
 const rootReducer = combineReducers({
-  modals: appReducer,
+  modal: modalReducer,
   user: userReducer
 })
 

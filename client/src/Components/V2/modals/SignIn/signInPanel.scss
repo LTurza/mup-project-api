@@ -1,0 +1,59 @@
+@import 'src/styles/colors';
+.login-panel__overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $color-dark, $alpha: 0.3);
+  position: fixed;
+  z-index: 12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-panel__modal{
+  width: calc(100% - 8rem);
+  height: auto;
+  padding: 2rem;
+  margin: 0 2rem;
+  position: relative;
+  background-color: $color-dark;
+  color: $color-light;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px $color-blue-dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-header{
+    font-size: 1.6rem;
+    font-weight: 400;
+
+  }
+  &-form{
+    width: 100%;
+    margin-bottom: 10rem;
+  }
+
+  &-actions{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    
+  }
+  .btn-smaller {
+    padding: 0.7rem 2rem !important;
+    border-radius: 5px;
+    margin: 0 1rem;
+    font-size: 1.4rem;
+  }
+  
+  .close-panel{
+    color: $color-light;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}

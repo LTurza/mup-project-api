@@ -1,0 +1,12 @@
+@import  'src/styles/colors';
+
+.nav-bottom {
+  height: 50px;
+  width: 100vw;
+  background-color: royalblue;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  box-shadow: 0 0 5px 1px $color-blue-dark;
+  z-index: 12;
+}

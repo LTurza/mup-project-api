@@ -2,7 +2,7 @@ import React from 'react'
 
 import './modalTasks.scss'
 import { ModalTextField, ModalTextArea } from './ModalFields'
-import { ButtonPriamry, ButtonSecondary } from './Buttons'
+// import { ButtonPriamry, ButtonSecondary } from './Buttons'
 
 const ModalAddTask = ({dataHandler}) => {
   return (
@@ -12,15 +12,15 @@ const ModalAddTask = ({dataHandler}) => {
       <ModalTextField
       fieldName="title"
       label="Title"
-      dataHandler={dataHandler}
+      dataHandler={ dataHandler }
       />
       <ModalTextArea 
         fieldName="description"
         label="Description"
       />
       <div>
-        <ButtonPriamry btnTitle="Add new" />
-        <ButtonSecondary btnTitle="Clear" />
+        {/* <ButtonPriamry btnTitle="Add new" /> */}
+        {/* <ButtonSecondary btnTitle="Clear" /> */}
       </div>
       </div>
     </div>

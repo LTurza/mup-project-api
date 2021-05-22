@@ -1,0 +1,76 @@
+@import 'src/styles/colors';
+
+.logged-out-user-panel__overlay{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $color-dark, $alpha: 0.3);
+  position: fixed;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logged-out-user-panel__modal{
+  width: calc(100% - 8rem);
+  height: auto;
+  padding: 2rem;
+  margin: 0 2rem;
+  position: relative;
+  background-color: $color-dark;
+  color: $color-light;
+  box-shadow: 0 0 5px 1px $color-blue-dark;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-header {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  .logged-out-user-panel__modal-actions {
+    width: 100%;
+    
+    &--login, &--register {
+      padding: 10px;
+      width: calc(100% - 20px);
+      box-shadow: 0 0 5px 1px $color-blue-light;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+      border: none;
+      border-radius: 10px;
+      background-color: $color-dark-alt;
+      font-size: 1.6rem;
+
+      &:hover {
+        color: $color-blue-dark;
+        box-shadow: 0 0 5px 1px $color-blue-dark;
+      }
+    }
+  }
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-enter.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.modal-exit {
+  opacity: 1;
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 300ms, transform 300ms;
+}
