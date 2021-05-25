@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './styles/App.scss';
 import { CSSTransition } from 'react-transition-group';
 import HomePage from './views/HomePage/HomePage'
 import AboutPage from './views/AboutPage/AboutPage'
-import Organizations from './views/Organizations'
+import Organizations from './views/Organizations/Organizations'
 import NaviTop from './Components/V2/NavTop/NaviTop'
 import NavBottom from './Components/V2/NavBottom/NavBottom'
-import Unathorized from './views/Unathorized'
-import { useSelector } from "react-redux";
+import Unathorized from './views/Unauthorized/Unauthorized'
+import { useSelector, useDispatch } from "react-redux";
 import MobileMenu from './Components/V2/MobileMenu/MobileMenu'
 import LoggedOutUserPanel from './Components/V2/modals/LoggedOutUserPanel/LoggedOutUserPanel'
 import LoginPanel from './Components/V2/modals/SignIn/SignInPanel'
 import RegistrationPanel from './Components/V2/modals/SignUp/SignUpPanel'
+import InvalidUserData from './Components/V2/modals/InvalidUserData/InvalidUserData'
 
 const selectModals = state => state.modal
 const userDataStore = state => state.user
@@ -20,11 +21,18 @@ const userDataStore = state => state.user
 const App = () => {
   const modal = useSelector(selectModals)
   const user = useSelector(userDataStore)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const authToken = JSON.parse(sessionStorage.getItem('auth-token'))
+    dispatch( {type: 'user/login', payload: { ...authToken} })
+  }, [dispatch])
+  
   return(
     <div className="App">
       <Router>
         <NaviTop />
-        <CSSTransition 
+        <CSSTransition
           in={ modal.mobileMenu }
           timeout={ 300 }
           classNames="slide-left"
@@ -56,6 +64,14 @@ const App = () => {
         >
           <RegistrationPanel />
         </CSSTransition>
+        <CSSTransition
+          in={ modal.invalidUserData }
+          timeout={ 300 }
+          classNames="modal"
+          unmountOnExit
+        >
+          <InvalidUserData />
+        </CSSTransition>
         <Switch>
             {/*<Route path='/kanbanBoard'>*/}
             {/*     <KanbanBoard />*/}
@@ -77,6 +93,3 @@ const App = () => {
 }
 
 export default App;
-
-
-

@@ -1,5 +1,5 @@
  import React, { useState } from 'react'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios'
 
 import './signInPanel.scss'
@@ -8,10 +8,12 @@ import { FormTextField, FormPasswordField } from './../../FormFields/FormFields'
 import { ButtonPriamry, ButtonSecondary } from './../../Buttons/Buttons'
 import CloseIcon from '@material-ui/icons/Close';
 
+const userSelector = state => state.user
+
 const UserSignIn = () => {
   const [ userEmail, setUserEmail ] = useState('')
   const [ userPassword, setUserPassword ] = useState('')
-
+  const user = useSelector(userSelector)
   const dispatch = useDispatch()
 
   const sendPostUserLoginData = async () => {
@@ -19,8 +21,19 @@ const UserSignIn = () => {
       email: userEmail,
       password: userPassword
     }
-    const response = await axios.post('http://localhost:5000/auth/login', userData)
-    dispatch({ type: 'user/login', payload: { ...response.data } })
+    let response = {}
+    try {
+      response = await axios.post('http://localhost:5000/auth/login', userData)
+    } catch (error) {
+      console.log('incorrect data')
+      console.log(response)
+      dispatch({ type: 'modal/openInvalidUserData' })
+    }
+    if (response.status === 200){
+      sessionStorage.setItem('auth-token', JSON.stringify(response.data))
+      dispatch({ type: 'user/login', payload: { ...response.data } })
+      dispatch({ type: 'modal/closeUserSignInModal' })
+    }
   }
 
     return (

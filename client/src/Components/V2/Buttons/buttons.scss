@@ -27,7 +27,7 @@
     color: $color-light;
 
     &:hover{
-      background-color: $color-red;
+      background-color: $color-red-alt;
       color: $color-light;
       transition-duration: .3s;
     }
@@ -44,5 +44,19 @@
       border: 1px solid $color-blue-dark;
       transition-duration: .3s;
     }
+  }
+}
+.btn-smaller {
+  padding: 0.7rem 2rem !important;
+  border-radius: 5px;
+  margin: 0 1rem;
+  font-size: 1.4rem;
+
+  &-toolbar {
+    width: 50%;
+    padding: 0.7rem 0 !important;
+    border-radius: 5px;
+    margin: 0 1rem;
+    font-size: 1.3rem;
   }
 }

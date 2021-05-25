@@ -6,7 +6,7 @@ const initialState = {
     addOrganization: false,
     mobileMenu: false,
     logOutUserPanel: false,
-
+    invalidUserData: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -44,10 +44,14 @@ const appReducer = (state = initialState, action) => {
     case 'modal/closeAllModals': {
       return {
         ...state,
+        signUp: false,
+        signIn: false,
+        alert: false,
+        loading: false,
+        addOrganization: false,
         mobileMenu: false,
         logOutUserPanel: false,
-        signIn: false,
-        signUp: false,
+        invalidUserData: false,
       }
     }
     case 'modal/openUserSignInModal': {
@@ -72,12 +76,25 @@ const appReducer = (state = initialState, action) => {
         signUp: true,
         mobileMenu: false,
         logOutUserPanel: false,
+        invalidUserData: false,
       }
     }
     case 'modal/closeUserSignUpModal': {
       return {
         ...state,
         signUp: false,
+      }
+    }
+    case 'modal/openInvalidUserData': {
+      return {
+        ...state,
+        invalidUserData: true,
+      }
+    }
+    case 'modal/closeInvalidUserData': {
+      return {
+        ...state,
+        invalidUserData: false,
       }
     }
 //---------------------------------
