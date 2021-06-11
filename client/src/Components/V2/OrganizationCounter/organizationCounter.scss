@@ -1,0 +1,15 @@
+@import 'src/styles/colors';
+
+.organization-counter {
+  height: 20px;
+  width: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: $color-blue;
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

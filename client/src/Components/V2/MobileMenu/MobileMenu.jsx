@@ -15,9 +15,9 @@ const MobileMenu = () => {
   const dispatch = useDispatch()
   const user = useSelector(userSelector)
   const logout = () => {
-    dispatch({type: 'modal/closeMobileMenu'})
+    dispatch({ type: 'modal/closeMobileMenu' })
     sessionStorage.clear()
-    dispatch({type: 'user/logout'})
+    dispatch({ type: 'user/logout' })
   }
   return (
     <div className='mobile-menu'>

@@ -43,5 +43,12 @@ const fetchUsersSchema = {
     skip: { type: 'number' }
   }
 }
+const fetchUserIdSchema = {
+  type: 'object',
+  require: ['email'],
+  properties: {
+    email: {type: 'string'},
+  }
+}
 
-module.exports = { newUserDataSchema, updateUserDataSchema, changeUserPasswordSchema, fetchUsersSchema }
+module.exports = { newUserDataSchema, updateUserDataSchema, changeUserPasswordSchema, fetchUsersSchema, fetchUserIdSchema }

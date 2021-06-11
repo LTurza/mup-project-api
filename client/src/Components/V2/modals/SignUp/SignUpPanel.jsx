@@ -7,12 +7,17 @@ import { ButtonPriamry, ButtonSecondary } from './../../Buttons/Buttons'
 import CloseIcon from '@material-ui/icons/Close';
 
 const UserSignUp = () => {
-  const [ state, setState ] = useState({})
+  const [ state, setState ] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  })
   const dispatch = useDispatch()
 
   const updateState = (event, fieldName) => {
     setState({ ...state, [fieldName]: event })
-    console.log(state)
   }
 
   const isPasswordIdentical = () => state.password === state.repeatPassword
@@ -47,27 +52,32 @@ const UserSignUp = () => {
         <FormTextField 
           label="First Name"
           fieldName='firstName'
-          dataHandler={ (event, fieldName) => updateState(event, fieldName) }
+          dataHandler={ (event) => updateState(event, 'firstName') }
+          value={state.firstName}
         />
         <FormTextField
           label="Last Name"
           fieldName='lastName'
-          dataHandler={ (event, fieldName) => updateState(event, fieldName) }
+          dataHandler={ (event) => updateState(event, 'lastName') }
+          value={state.lastName}
         />
         <FormTextField
           label="Email"
           fieldName='email'
-          dataHandler={ (event, fieldName) => updateState(event, fieldName) }
+          dataHandler={ (event) => updateState(event, 'email') }
+          value={state.email}
         />
         <FormPasswordField
           label="Password"
           fieldName='password'
-          dataHandler={ (event, fieldName) => updateState(event, fieldName) }
+          dataHandler={ (event) => updateState(event, 'password') }
+          value={state.password}
         />
         <FormPasswordField
           label="Repeat password"
           fieldName='repeatPassword'
-          dataHandler={ (event, fieldName) => updateState(event, fieldName) }
+          dataHandler={ (event) => updateState(event, 'repeatPassword') }
+          value={state.repeatPassword}
         />
       </div>
       <div className="registration-panel__modal-actions">

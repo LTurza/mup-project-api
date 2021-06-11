@@ -8,6 +8,7 @@ const userRouter = require('./server/routes/userRouter')
 const authRouter = require('./server/routes/authRoutes')
 const teamRouter = require('./server/routes/teamRouter')
 const organizationRouter = require('./server/routes/organizationRoutes')
+const taskRouter = require('./server/routes/taskRoutes')
 
 const server = express()
 
@@ -27,6 +28,7 @@ server.use('/auth/', authRouter)
 server.use('/teams',teamRouter)
 server.use('/user', userRouter)
 server.use('/organization', organizationRouter)
+server.use('/task', taskRouter)
 
 db.on('error', function () {
   serverLog('mongo Connection failed! Closing server')

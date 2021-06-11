@@ -1,6 +1,6 @@
 @import 'src/styles/colors';
 
-.logged-out-user-panel__overlay{
+.logged-out-user-panel__overlay {
   width: 100vw;
   height: 100vh;
   background-color: rgba($color: $color-dark, $alpha: 0.3);
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.logged-out-user-panel__modal{
+.logged-out-user-panel__modal {
   width: calc(100% - 8rem);
   height: auto;
   padding: 2rem;

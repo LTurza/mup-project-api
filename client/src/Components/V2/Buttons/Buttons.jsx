@@ -7,8 +7,9 @@ const ButtonPriamry = ({ btnType, btnId, btnTitle, click, classCss }) => {
       className={ "btn primary " + classCss }
       type={ btnType }
       id={ btnId }
-      onClick={ click }>
-        { btnTitle }
+      onClick={ click }
+    >
+      { btnTitle }
     </button>
     )
 }
@@ -19,8 +20,9 @@ const ButtonSecondary = ({ btnType, btnId, btnTitle, click, classCss }) => {
       className={ "btn secondary " + classCss }
       type={ btnType }
       id={ btnId }
-      onClick={ click }>
-        { btnTitle }
+      onClick={ click }
+    >
+      { btnTitle }
     </button>
     )
 }
@@ -31,8 +33,9 @@ const ButtonDark = ({ btnType, btnId, btnTitle, click, classCss }) => {
       className={"btn dark " + classCss}
       type={ btnType }
       id={ btnId }
-      onClick={ click }>
-        { btnTitle }
+      onClick={ click }
+    >
+      { btnTitle }
     </button>
     )
 }

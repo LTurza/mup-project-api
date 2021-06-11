@@ -1,0 +1,6 @@
+@import 'src/styles/colors';
+
+.kanban-board {
+  min-height: calc(100vh - 100px);
+  background-color: $color-dark;
+}

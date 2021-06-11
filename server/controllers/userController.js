@@ -5,7 +5,8 @@ const {
   newUserDataSchema,
   updateUserDataSchema,
   changeUserPasswordSchema,
-  fetchUsersSchema
+  fetchUsersSchema,
+  // fetchUserIdSchema,
 } = require('./../validation/userValidationSchema')
 const Ajv = require('ajv')
 
@@ -84,4 +85,14 @@ exports.getFetchUsers = async (req, res) => {
 exports.getUserCount = async (req, res) => {
   const userCount = await User.countDocuments()
   res.status(200).json({userCount: userCount})
+}
+
+exports.getFetchUserId = async (req, res) => {
+  if (req.query.email && typeof req.query.email === 'string'){
+    const user = await User.findOne({email: req.query.email})
+    res.status(200).send(JSON.stringify(user._id))
+  } else {
+    res.status(400).send()
+  }
+ 
 }

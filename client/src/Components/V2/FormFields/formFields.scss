@@ -2,7 +2,7 @@
 
 .form-input-text,
 .form-input-email,
-.form-input-password{
+.form-input-password {
   position: relative;
   width: 100%;
   height: 8rem;
@@ -12,7 +12,7 @@
 
   .form-input-text__label,
   .form-input-email__label,
-  .form-input-password__label{
+  .form-input-password__label {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -36,7 +36,7 @@
 
     .form-input-text__label--name,
     .form-input-email__label--name,
-    .form-input-password__label--name{
+    .form-input-password__label--name {
       position: absolute;
       bottom: 5px;
       left: 0px;
@@ -48,7 +48,7 @@
 
   .form-input-text__field,
   .form-input-email__field,
-  .form-input-password__field{
+  .form-input-password__field {
     background-color: transparent;
     width: 100%;
     height: 100%;
@@ -62,7 +62,7 @@
     &:focus + .form-input-email__label .form-input-email__label--name,
     &:valid + .form-input-email__label .form-input-email__label--name,
     &:focus + .form-input-password__label .form-input-password__label--name,
-    &:valid + .form-input-password__label .form-input-password__label--name{
+    &:valid + .form-input-password__label .form-input-password__label--name {
       transform: translateY(-150%);
       font-size: 1.2rem;
       color: $color-blue;
@@ -77,33 +77,33 @@
     &:focus + .form-input-email__label::after,
     &:valid + .form-input-email__label::after,
     &:focus + .form-input-password__label::after,
-    &:valid + .form-input-password__label::after{
-        transform: translateX(0%);
+    &:valid + .form-input-password__label::after {
+      transform: translateX(0%);
     }
   }
 }
 
-.form-input-textarea{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 60%;
+.form-input-textarea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
 
-    &__field{
-        background-color: $color-dark;
-        color: $color-light;
-        border: 1px solid $color-light;
-        width: 100%;
-        transition-duration: .3s;
-        height: 100%;
-        resize: none;
-        overflow-y: scroll;
-        border-radius: 5px;
-        
-        &:focus {
-            outline: none;
-            border: 2px solid $color-blue;
-            transition-duration: .3s;
-        }
+  &__field {
+    background-color: $color-dark;
+    color: $color-light;
+    border: 1px solid $color-light;
+    width: 100%;
+    transition-duration: .3s;
+    height: 100%;
+    resize: none;
+    overflow-y: scroll;
+    border-radius: 5px;
+      
+    &:focus {
+      outline: none;
+      border: 2px solid $color-blue;
+      transition-duration: .3s;
     }
+  }
 }

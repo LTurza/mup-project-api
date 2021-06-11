@@ -11,7 +11,7 @@ const InvalidUserData = () => {
         <h1 className="invalid-user-data__modal-header">Invalid Email or Password!</h1>
         <div className="invalid-user-data__modal-actions">
           <ButtonSecondary
-            btnTitle="SignUp"
+            btnTitle="Sign Up"
             click={ () => dispatch({type: 'modal/openUserSignUpModal'})}
             classCss="btn-smaller"
           />

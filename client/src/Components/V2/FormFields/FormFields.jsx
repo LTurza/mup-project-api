@@ -1,7 +1,7 @@
 import React from 'react'
 import './formFields.scss'
 
-const FormTextField = ({ fieldName, label, dataHandler, classCss }) => {
+const FormTextField = ({ fieldName, label, dataHandler, classCss, value}) => {
   return (
     <div className={ 'form-input-text ' + classCss }>
       <input
@@ -9,6 +9,7 @@ const FormTextField = ({ fieldName, label, dataHandler, classCss }) => {
         type="text"
         name={ fieldName }
         onChange={ (event) => dataHandler(event.target.value, fieldName) }
+        value={value || ''}
         required
       />
       <label className="form-input-text__label" htmlFor={ fieldName }>
@@ -25,7 +26,7 @@ const FormPasswordField = ({ fieldName, label, dataHandler, classCss }) => {
         className="form-input-password__field"
         type="password"
         name={ fieldName }
-        onChange={(event) => dataHandler(event.target.value, fieldName) }
+        onChange={ (event) => dataHandler(event.target.value, fieldName) }
         required
       />
       <label className="form-input-password__label" htmlFor={ fieldName }>

@@ -7,6 +7,10 @@ const initialState = {
     mobileMenu: false,
     logOutUserPanel: false,
     invalidUserData: false,
+    newOrganization: false,
+    organizationDeleteConfirmation: false,
+    newTask: false, 
+    taskDescription: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -17,12 +21,14 @@ const appReducer = (state = initialState, action) => {
         mobileMenu: true,
       }
     }
+
     case 'modal/closeMobileMenu': {
       return {
         ...state, 
         mobileMenu: false,
       }
     }
+
     case 'modal/toggleMobileMenu': {
       return {
         ...state,
@@ -32,6 +38,7 @@ const appReducer = (state = initialState, action) => {
         signUp: false,
       }
     }
+
     case 'modal/mobileLogOutUserPanel': {
       return {
         ...state,
@@ -41,6 +48,7 @@ const appReducer = (state = initialState, action) => {
         signIn: false,
       }
     }
+
     case 'modal/closeAllModals': {
       return {
         ...state,
@@ -54,6 +62,7 @@ const appReducer = (state = initialState, action) => {
         invalidUserData: false,
       }
     }
+
     case 'modal/openUserSignInModal': {
       return {
         ...state,
@@ -63,12 +72,14 @@ const appReducer = (state = initialState, action) => {
         logOutUserPanel: false,
       }
     }
+
     case 'modal/closeUserSignInModal': {
       return {
         ...state,
         signIn: false,
       }
     }
+
     case 'modal/openUserSignUpModal': {
       return {
         ...state,
@@ -79,22 +90,80 @@ const appReducer = (state = initialState, action) => {
         invalidUserData: false,
       }
     }
+
     case 'modal/closeUserSignUpModal': {
       return {
         ...state,
         signUp: false,
       }
     }
+
     case 'modal/openInvalidUserData': {
       return {
         ...state,
         invalidUserData: true,
       }
     }
+
     case 'modal/closeInvalidUserData': {
       return {
         ...state,
         invalidUserData: false,
+      }
+    }
+
+    case 'modal/openNewOrganization': {
+      return {
+        ...state,
+        newOrganization: true,
+      }
+    }
+
+    case 'modal/closeNewOrganization': {
+      return {
+        ...state,
+        newOrganization: false,
+      }
+    }
+
+    case 'modal/openOrganizationDeleteConfirmation': {
+      return {
+        ...state,
+        organizationDeleteConfirmation: true
+      }
+    }
+
+    case 'modal/closeOrganizationDeleteConfirmation': {
+      return {
+        ...state,
+        organizationDeleteConfirmation: false
+      }
+    }
+    case 'modal/openNewTask': {
+      return {
+        ...state,
+        newTask: true,
+      }
+    }
+
+
+    case 'modal/closeNewTask': {
+      return {
+        ...state,
+        newTask: false,
+      }
+    }
+
+    case 'modal/openTaskDescription': {
+      return {
+        ...state,
+        taskDescription: true,
+      }
+    }
+    case 'modal/closeTaskDescription': {
+      return {
+        ...state,
+        taskDescription: false,
       }
     }
 //---------------------------------
@@ -122,6 +191,7 @@ const appReducer = (state = initialState, action) => {
         signUp: false,
       }
     }
+
     default:
       return state
   }

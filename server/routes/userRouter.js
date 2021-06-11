@@ -13,4 +13,6 @@ router.get('/fetchUsers', userController.getFetchUsers)
 
 router.get('/countUsers', userController.getUserCount)
 
+router.get('/fetchUserId', userController.getFetchUserId)
+
 module.exports = router

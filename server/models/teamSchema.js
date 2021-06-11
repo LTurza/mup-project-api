@@ -9,7 +9,7 @@ const teamSchema = new Schema({
   description: String,
   teamLogo: String,
   admin: {
-      id: {
+    id: {
       type: mongoose.ObjectId,
       required: true
     },

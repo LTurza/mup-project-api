@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import './HomePage.scss'
-import kanbanImg from './../../assets/logo.png'
+import firstHomePageImage from './../../assets/bg1.jpg'
+import secondHomePageImage from './../../assets/bg2.jpg'
 
 import HomeMobileContent from './../../Components/V2/HomeMobileContent/HomeMobileContent'
 
@@ -11,7 +12,7 @@ const HomePage = () => {
       <main className="home-page">
         <HomeMobileContent 
             header="Join our Community"
-            img={ kanbanImg }
+            img={ firstHomePageImage }
             btnTitle="Join Now"
             btnAction={ () => dispatch({ type: 'modal/openUserSignUpModal' }) }
             content= { `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -21,7 +22,7 @@ const HomePage = () => {
         />
         <HomeMobileContent 
             header="Join our Community"
-            img={ kanbanImg }
+            img={ secondHomePageImage }
             content= { `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
             At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.

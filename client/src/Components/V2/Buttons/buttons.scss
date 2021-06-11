@@ -1,6 +1,6 @@
 @import 'src/styles/colors';
 
-.btn{
+.btn {
   padding: 10px 15px;
   font-weight: 300;
   font-size: 1.6rem;
@@ -15,25 +15,25 @@
     background-color: $color-blue;
     color: $color-light;
 
-    &:hover{
+    &:hover {
       background-color: $color-blue-dark ;
       color: $color-light;
       transition-duration: 0.3s;
     }
   }
 
-  &.secondary{
+  &.secondary {
     background-color: $color-red;
     color: $color-light;
 
-    &:hover{
+    &:hover {
       background-color: $color-red-alt;
       color: $color-light;
       transition-duration: .3s;
     }
   }
   
-  &.dark{
+  &.dark {
     background-color: $color-dark;
     color: $color-light;
     border: 1px solid $color-blue-dark;
@@ -46,6 +46,7 @@
     }
   }
 }
+
 .btn-smaller {
   padding: 0.7rem 2rem !important;
   border-radius: 5px;

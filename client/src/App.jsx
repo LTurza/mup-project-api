@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './styles/App.scss';
 import { CSSTransition } from 'react-transition-group';
 import HomePage from './views/HomePage/HomePage'
@@ -14,6 +14,7 @@ import LoggedOutUserPanel from './Components/V2/modals/LoggedOutUserPanel/Logged
 import LoginPanel from './Components/V2/modals/SignIn/SignInPanel'
 import RegistrationPanel from './Components/V2/modals/SignUp/SignUpPanel'
 import InvalidUserData from './Components/V2/modals/InvalidUserData/InvalidUserData'
+import KanbanBoard from './views/KanbanBoard/KanbanBoard';
 
 const selectModals = state => state.modal
 const userDataStore = state => state.user
@@ -25,8 +26,12 @@ const App = () => {
 
   useEffect(() => {
     const authToken = JSON.parse(sessionStorage.getItem('auth-token'))
-    dispatch( {type: 'user/login', payload: { ...authToken} })
+    dispatch({
+      type: 'user/login',
+      payload: { ...authToken},
+    })
   }, [dispatch])
+  // const {id} = useParams()
   
   return(
     <div className="App">
@@ -73,9 +78,9 @@ const App = () => {
           <InvalidUserData />
         </CSSTransition>
         <Switch>
-            {/*<Route path='/kanbanBoard'>*/}
-            {/*     <KanbanBoard />*/}
-            {/*  </Route>*/}
+            <Route path='/kanbanBoard/:id'>
+            <KanbanBoard />
+             </Route>
             <Route exact path='/'>
               <HomePage />
             </Route>

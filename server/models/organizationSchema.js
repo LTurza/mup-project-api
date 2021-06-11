@@ -6,10 +6,11 @@ const organizationSchema = new Schema({
     type: String,
     required: true,
   },
-  teams: Array,
+  logo: String,
+  tasks: Array,
   members: Array,
   admin: {
-      id: {
+    id: {
       type: mongoose.ObjectId,
       required: true,
     },

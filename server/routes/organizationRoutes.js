@@ -14,4 +14,8 @@ router.get('/fetch/:userId/organizations', organizationController.getUserOrganiz
 
 router.get('/count', organizationController.getOrganizationCount)
 
+router.delete('/deleteOrganizations', organizationController.deleteOrganizations)
+
+router.get('/organizationData', organizationController.getOrganizationData)
+
 module.exports = router

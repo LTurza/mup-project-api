@@ -12,7 +12,8 @@ const newOrganizationDataSchema = {
       minLength: 24,
       maxLength: 24
     },
-    members: { type:  'array' }
+    members: { type:  'array' },
+    organizationLogo: {type: 'string'}
   }
 }
 
@@ -23,7 +24,7 @@ const newOrganizationMemberSchema = {
     organizationId: {
       type: 'string',
       minLength: 24,
-      maxLength: 24
+      maxLength: 24,
     },
     newMembers: { type:  'array' }
   }
@@ -33,8 +34,16 @@ const fetchUserOrganizationsSchema = {
   type: 'object',
   required: ['skip'],
   properties: {
-    skip: { type: 'number'}
+    skip: { type: 'string'}
   }
 }
 
-module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, fetchUserOrganizationsSchema, }
+const deleteOrganizationsSchema = {
+  type: 'object',
+  required: ['organizations'],
+  properties: {
+    organizations: {type: 'array'}
+  }
+}
+
+module.exports = { newOrganizationDataSchema, newOrganizationMemberSchema, fetchUserOrganizationsSchema, deleteOrganizationsSchema, }

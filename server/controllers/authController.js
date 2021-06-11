@@ -4,22 +4,28 @@ const jwt = require('jsonwebtoken')
 
 exports.postUserSignIn = async (req,res) => {
   const email = req.body.email
-  const password = req.body.password
-  const user = await User.findOne({email: email})
-  const isPasswordMatching  = await bcrypt.compare(password, user.password)
+  const password = req.body.password 
+  const isUserExists = await User.exists({email: email})
 
-  if (isPasswordMatching){
-    const token = jwt.sign({
-      expiresIn: Math.floor(Date.now() / 1000) + (60 * 60),
-      id: user._id,
-    }, process.env.JWT_SECRET)
-    res.status(200).send(JSON.stringify({
-      token: token,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      id: user._id,
-    }))
+  if (isUserExists) {
+    const user = await User.findOne({email: email})
+    const isPasswordMatching  = await bcrypt.compare(password, user.password)
+
+    if (isPasswordMatching){
+      const token = jwt.sign({
+        expiresIn: Math.floor(Date.now() / 1000) + (60 * 60),
+        id: user._id,
+      }, process.env.JWT_SECRET)
+      res.status(200).send(JSON.stringify({
+        token: token,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        id: user._id,
+      }))
+    } else {
+      res.status(401).send()
+    } 
   } else {
     res.status(401).send()
   }
