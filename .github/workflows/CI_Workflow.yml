@@ -6,6 +6,7 @@ jobs:
   Tests:
 
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout branch
@@ -30,6 +31,8 @@ jobs:
         run: npm install --dev
 
       - name: Server tests
+        env: 
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: npm test
 
       - name: Success

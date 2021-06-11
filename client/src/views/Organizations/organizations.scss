@@ -1,0 +1,27 @@
+@import 'src/styles/colors';
+
+.organizations {
+  width: 100vw;
+  min-height: calc(100vh - 100px);
+  background-color: $color-dark;
+  padding-bottom: 2rem;
+
+  &__content {
+    margin: 1rem 2rem;
+    padding: 1rem 2rem;
+    width: calc(100% - 8rem);
+    min-height: calc(40vh - 6rem);
+    background-color: $color-dark;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px $color-blue-dark;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &-list {
+      width: calc(100% - 2rem);
+      margin-bottom: 2.5rem;
+    }
+  }
+}

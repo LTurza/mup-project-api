@@ -1,0 +1,109 @@
+@import 'src/styles/colors';
+
+.form-input-text,
+.form-input-email,
+.form-input-password {
+  position: relative;
+  width: 100%;
+  height: 8rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center !important;
+
+  .form-input-text__label,
+  .form-input-email__label,
+  .form-input-password__label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid $color-light;
+    margin: 10px 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-bottom: 3px solid $color-blue;
+      left: 0px;
+      bottom: -1px;
+      transform: translateX(-100%);
+      transition-duration: 0.5s;
+    }
+
+    .form-input-text__label--name,
+    .form-input-email__label--name,
+    .form-input-password__label--name {
+      position: absolute;
+      bottom: 5px;
+      left: 0px;
+      transition: all 0.3s ease;
+      color: $color-light;
+      font-size: 1.6rem;
+    }
+  }
+
+  .form-input-text__field,
+  .form-input-email__field,
+  .form-input-password__field {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    color: #44a8e1;
+    padding-top: 1.5rem;
+    border: none;
+    font-size: 1.6rem;
+
+    &:focus + .form-input-text__label .form-input-text__label--name,
+    &:valid + .form-input-text__label .form-input-text__label--name,
+    &:focus + .form-input-email__label .form-input-email__label--name,
+    &:valid + .form-input-email__label .form-input-email__label--name,
+    &:focus + .form-input-password__label .form-input-password__label--name,
+    &:valid + .form-input-password__label .form-input-password__label--name {
+      transform: translateY(-150%);
+      font-size: 1.2rem;
+      color: $color-blue;
+    }
+
+    &:focus{
+      outline: none;
+    }
+
+    &:focus + .form-input-text__label::after,
+    &:valid + .form-input-text__label::after,
+    &:focus + .form-input-email__label::after,
+    &:valid + .form-input-email__label::after,
+    &:focus + .form-input-password__label::after,
+    &:valid + .form-input-password__label::after {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.form-input-textarea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
+
+  &__field {
+    background-color: $color-dark;
+    color: $color-light;
+    border: 1px solid $color-light;
+    width: 100%;
+    transition-duration: .3s;
+    height: 100%;
+    resize: none;
+    overflow-y: scroll;
+    border-radius: 5px;
+      
+    &:focus {
+      outline: none;
+      border: 2px solid $color-blue;
+      transition-duration: .3s;
+    }
+  }
+}

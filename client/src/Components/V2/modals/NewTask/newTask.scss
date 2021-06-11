@@ -1,0 +1,49 @@
+@import 'src/styles/colors';
+
+.new-task {
+  width: 100%;
+  min-height: calc(100% - 100px);
+  position: fixed;
+  background-color: rgba($color: $color-dark, $alpha: 0.3);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__modal {
+    margin: 0 2rem;
+    padding: 2rem;
+    width: calc(100% - 8rem);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px $color-blue-dark;
+    background-color: $color-dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    &-header {
+      color: $color-light;
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+
+    &-form {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &-close {
+      color: $color-light;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+  &__actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

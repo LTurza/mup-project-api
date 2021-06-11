@@ -1,0 +1,42 @@
+@import 'src/styles/colors';
+
+.delete-confirmation__overlay {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: $color-dark, $alpha: 0.3 );
+  z-index: 12;
+}
+.delete-confirmation__modal {
+  width: calc(100% - 4rem);
+  padding: 2rem;
+  margin: 0 2rem;
+  background-color: $color-dark;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 1px $color-blue-dark;
+  color: $color-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-header {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &-text {
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
+
+  &-actions {
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}

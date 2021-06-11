@@ -1,0 +1,63 @@
+@import 'src/styles/colors';
+
+.btn {
+  padding: 10px 15px;
+  font-weight: 300;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 10px;
+  transition-duration: 0.3s;
+  color: $color-dark;
+  background-color: $color-blue-light;
+  transition-duration: .3s;
+
+  &.primary {
+    background-color: $color-blue;
+    color: $color-light;
+
+    &:hover {
+      background-color: $color-blue-dark ;
+      color: $color-light;
+      transition-duration: 0.3s;
+    }
+  }
+
+  &.secondary {
+    background-color: $color-red;
+    color: $color-light;
+
+    &:hover {
+      background-color: $color-red-alt;
+      color: $color-light;
+      transition-duration: .3s;
+    }
+  }
+  
+  &.dark {
+    background-color: $color-dark;
+    color: $color-light;
+    border: 1px solid $color-blue-dark;
+
+    &:hover {
+      background-color: $color-dark;
+      color: $color-light;
+      border: 1px solid $color-blue-dark;
+      transition-duration: .3s;
+    }
+  }
+}
+
+.btn-smaller {
+  padding: 0.7rem 2rem !important;
+  border-radius: 5px;
+  margin: 0 1rem;
+  font-size: 1.4rem;
+
+  &-toolbar {
+    width: 50%;
+    padding: 0.7rem 0 !important;
+    border-radius: 5px;
+    margin: 0 1rem;
+    font-size: 1.3rem;
+  }
+}

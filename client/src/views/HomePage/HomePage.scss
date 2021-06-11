@@ -1,0 +1,52 @@
+@import 'src/styles/colors';
+@import 'src/styles/size';
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $color-dark;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-dark;
+    width: 100vw;
+    color: white;
+    position: relative;
+    min-height: 60rem;
+
+    &-content {
+      position: absolute;
+      top: 14.8rem;
+      margin: 0 2rem;
+      background-color: $color-dark;
+      width: calc(100% - 8rem);
+      padding: 2rem;
+      box-shadow: 0 0 5px 1px $color-blue-dark;
+      border: none;
+      border-radius: 10px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: justify;
+      z-index: 10;
+    }
+
+    &-img {
+      height: 22rem;
+    }
+
+    &-header {
+      font-weight: 400;
+      font-size: 2.4rem;
+    }
+
+    &-text {
+      font-weight: 200;
+      padding: 2rem 0;
+      font-size: 1.4rem;
+    }
+  }
+}

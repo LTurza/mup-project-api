@@ -1,0 +1,101 @@
+ import React, { useState } from 'react'
+import {useDispatch} from "react-redux";
+import axios from 'axios'
+import './signUpPanel.scss'
+import { FormTextField, FormPasswordField } from './../../FormFields/FormFields'
+import { ButtonPriamry, ButtonSecondary } from './../../Buttons/Buttons'
+import CloseIcon from '@material-ui/icons/Close';
+
+const UserSignUp = () => {
+  const [ state, setState ] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  })
+  const dispatch = useDispatch()
+
+  const updateState = (event, fieldName) => {
+    setState({ ...state, [fieldName]: event })
+  }
+
+  const isPasswordIdentical = () => state.password === state.repeatPassword
+
+  const submitData = async () => {
+    const isPasswordValid = isPasswordIdentical()
+    if (isPasswordValid) {
+      try {
+        await axios.post('http://localhost:5000/user/signUp', {
+          firstName: state.firstName,
+          lastName: state.lastName,
+          email: state.email,
+          password: state.password,
+        })
+      } catch (error) {
+        console.error(error)
+      }
+    } else {
+      console.error('Incorrect Password')
+    }
+  }
+
+  return(
+   <div className="registration-panel__overlay">
+      <div className="registration-panel__modal">
+      <CloseIcon
+        className="close-panel"
+        onClick={ () => dispatch({ type: 'modal/closeUserSignUpModal' }) }
+      />
+      <h2 className="registration-panel__modal-header">Sign Up</h2>
+      <div className="registration-panel__modal-form">
+        <FormTextField 
+          label="First Name"
+          fieldName='firstName'
+          dataHandler={ (event) => updateState(event, 'firstName') }
+          value={state.firstName}
+        />
+        <FormTextField
+          label="Last Name"
+          fieldName='lastName'
+          dataHandler={ (event) => updateState(event, 'lastName') }
+          value={state.lastName}
+        />
+        <FormTextField
+          label="Email"
+          fieldName='email'
+          dataHandler={ (event) => updateState(event, 'email') }
+          value={state.email}
+        />
+        <FormPasswordField
+          label="Password"
+          fieldName='password'
+          dataHandler={ (event) => updateState(event, 'password') }
+          value={state.password}
+        />
+        <FormPasswordField
+          label="Repeat password"
+          fieldName='repeatPassword'
+          dataHandler={ (event) => updateState(event, 'repeatPassword') }
+          value={state.repeatPassword}
+        />
+      </div>
+      <div className="registration-panel__modal-actions">
+        <ButtonSecondary
+          btnTitle='Sign In'
+          classCss="btn-smaller"
+          click={ () => dispatch({ type: 'modal/openUserSignInModal' }) }
+        />
+        <ButtonPriamry
+          btnType='submit'
+          btnTitle='Register'
+          click={ () => submitData() }
+          classCss="btn-smaller"  
+        />
+      </div>
+    </div>
+   </div>
+  )
+}
+
+export default UserSignUp

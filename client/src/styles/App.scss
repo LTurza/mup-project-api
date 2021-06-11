@@ -2,13 +2,21 @@
   margin: 0;
   padding: 0;
 }
+
+html {
+  font-size: 62.5%;
+}
+
 ul{
   list-style-type: none;
 }
+
 a{
   text-decoration-line: none;
 }
+
 .App{
   position: relative;
   display: block;
+  min-height: 100vh;
 }

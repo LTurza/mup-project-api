@@ -1,0 +1,34 @@
+@import 'src/styles/colors';
+
+.nav-bottom {
+  &__btn {
+    height: 100%;
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: $color-dark;
+
+    &:active, &:focus {
+      background-color: $color-dark-alt;
+    }
+
+    &:active, &:focus .nav-bottom__icon {
+      color: $color-blue;
+    }
+  }
+
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &__icon {
+    color: $color-light;
+    font-size: 3rem !important;
+  }
+}
